@@ -1,15 +1,28 @@
 # 🌳 Sustainable Code - by BEN ABT
 
-## .NET 
+Sustainable applications are becoming increasingly important, because more and more energy consumption is attributable to the operations of a platform or application.
+
+On the user side, this can be seen in the battery life of a laptop or cell phone and as a platform operator, it can be seen in the costs of compute power.
+
+In this repository I use well-known snippets and compare them to sustainable implementations.
+
+It's worth it!
+
+## Enegry Calculation
+
+The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
+
+The combination of the performance of the code and the energy consumption of the hardware then results in the CO2 footprint, for example.
+
+## .NET Samples
 
 Code samples and snippets based on .NET
 
-### More performance with lower energy and memory consumption thanks to object pooling
+[.NET Object Pooling with StringBuilder](csharp/stringbuilder-pooled)
 
-This example impressively shows how performance can be massively increased thanks to the object pooling pattern built into .NET - and how energy consumption and memory allocations can be reduced in the process.
+[.NET Less Allocations with Hyperlinq](csharp/hyperlinq-tolist)
 
-In percentage terms, significant performance increases and thus energy optimizations can be achieved with little effort in many applications, especially for string operations.
-For this reason, the String Builder is used to illustrate the potentials.
+[.NET Low Allocation Log Message Generation](csharp/log-messages-source-code-generator)
 
-[.NET Object Pooling - StringBuilder](https://github.com/BenjaminAbt/dotnet-perf-stringbuilder-pooled)
+[.NET Zero Allocation String Generation](csharp/random-string)
 

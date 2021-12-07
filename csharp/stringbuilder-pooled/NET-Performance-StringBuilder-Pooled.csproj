@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <Nullable>disable</Nullable>
+        <RootNamespace>BenjaminAbt.Samples.StringBuilderPooledPerformance</RootNamespace>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+        <DefineConstants>$(DefineConstants);OS_WIN</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Label="No strong named assembly references">
+        <NoWarn>$(NoWarn);CS8002</NoWarn>
+        <PackageId>BenjaminAbt.Samples.StringBuilderPooledPerformance</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+        <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="6.0.0" />
+        <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.1" Condition="'$(OS)' == 'Windows_NT'" />
+    </ItemGroup>
+
+</Project>
