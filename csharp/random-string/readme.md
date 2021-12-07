@@ -1,4 +1,4 @@
-# 🌳 Sustainable Code - Zero Allocation Random String 📊
+# 🌳 Sustainable Code - Random String 📊
 
 Random string generation is a very common use case, with large potential for improvement and performance in percentage terms.
 
