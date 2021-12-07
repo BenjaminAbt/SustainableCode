@@ -24,5 +24,5 @@ Code samples and snippets based on .NET
 
 [.NET Low Allocation Log Message Generation](csharp/log-messages-source-code-generator)
 
-[.NET Zero Allocation String Generation](csharp/random-string)
+[.NET String Generation](csharp/random-string)
 
