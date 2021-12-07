@@ -8,7 +8,7 @@ In this repository I use well-known snippets and compare them to sustainable imp
 
 It's worth it!
 
-## Enegry Calculation
+## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
 
