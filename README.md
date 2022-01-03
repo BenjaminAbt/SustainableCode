@@ -8,12 +8,6 @@ In this repository I use well-known snippets and compare them to sustainable imp
 
 It's worth it!
 
-## Energy Calculation
-
-The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
-
-The combination of the performance of the code and the energy consumption of the hardware then results in the CO2 footprint, for example.
-
 ## .NET Samples
 
 Code samples and snippets based on .NET
@@ -25,4 +19,13 @@ Code samples and snippets based on .NET
 [.NET Low Allocation Log Message Generation](csharp/log-messages-source-code-generator)
 
 [.NET Zero Allocation String Generation](csharp/random-string)
+
+[.NET Struct vs Class](csharp/struct-vs-class)
+
+## Energy Calculation
+
+The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
+
+The combination of the performance of the code and the energy consumption of the hardware then results in the CO2 footprint, for example.
+
 
