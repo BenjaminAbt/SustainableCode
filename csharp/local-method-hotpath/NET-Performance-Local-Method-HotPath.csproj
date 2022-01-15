@@ -5,7 +5,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>10</LangVersion>
         <Nullable>disable</Nullable>
-        <RootNamespace>BenjaminAbt.Samples.StringBuilderPooledPerformance</RootNamespace>
+        <RootNamespace>BenjaminAbt.Samples.LocalMethodHotpath</RootNamespace>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
@@ -15,12 +15,11 @@
 
     <PropertyGroup Label="No strong named assembly references">
         <NoWarn>$(NoWarn);CS8002</NoWarn>
-        <PackageId>BenjaminAbt.Samples.StringBuilderPooledPerformance</PackageId>
+        <PackageId>BenjaminAbt.Samples.LocalMethodHotpath</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
-        <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="6.0.1" />
         <PackageReference Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.13.1" Condition="'$(OS)' == 'Windows_NT'" />
     </ItemGroup>
 

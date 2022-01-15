@@ -22,6 +22,8 @@ Code samples and snippets based on .NET
 
 [.NET Struct vs Class](csharp/struct-vs-class)
 
+[.NET Local method hot path](csharp/local-method-hotpath)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
