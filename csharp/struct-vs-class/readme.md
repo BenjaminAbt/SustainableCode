@@ -27,7 +27,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 ## 🏁 Results
 
-- 🔋 Both struct samples procude no allocations!
+- 🔋 Both struct samples produce no allocations!
 - 🚀 Struct has a better performance over all!
 
 ## Remarks
