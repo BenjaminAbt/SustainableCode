@@ -4,7 +4,7 @@ This small example should show the new string interpolation features with .NET 6
 
 Docs:
 - [String Interpolation in C# 10 and .NET 6](https://devblogs.microsoft.com/dotnet/string-interpolation-in-c-10-and-net-6/?WT.mc_id=DT-MVP-5001507)
-- [stackalloc](https://docs.microsoft.com/de-de/dotnet/csharp/language-reference/operators/stackalloc?WT.mc_id=DT-MVP-5001507)
+- [stackalloc](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc?WT.mc_id=DT-MVP-5001507)
 
 ## 🔥 Benchmark
 
@@ -40,4 +40,4 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark runs several minutes (0:41 min on my workstation)
+This benchmark takes 46secs on my machine.

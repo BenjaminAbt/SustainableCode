@@ -26,6 +26,8 @@ Code samples and snippets based on .NET
 
 [.NET C# 10 String Interpolation](csharp/csharp10-string-interpolation)
 
+[.NET List vs HashSet](csharp/list-vs-hashset)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
