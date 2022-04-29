@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-CSharp10-String-Interpo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-vs-HashSet", "list-vs-hashset\NET-List-vs-HashSet.csproj", "{07754313-3B84-4B2F-83C1-6AEE374B4297}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-In-Parameter", "in-parameter\NET-In-Parameter.csproj", "{9CF9A292-F8B3-4165-AE09-FB6E03FCFEF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{07754313-3B84-4B2F-83C1-6AEE374B4297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07754313-3B84-4B2F-83C1-6AEE374B4297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07754313-3B84-4B2F-83C1-6AEE374B4297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF9A292-F8B3-4165-AE09-FB6E03FCFEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF9A292-F8B3-4165-AE09-FB6E03FCFEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF9A292-F8B3-4165-AE09-FB6E03FCFEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF9A292-F8B3-4165-AE09-FB6E03FCFEF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
