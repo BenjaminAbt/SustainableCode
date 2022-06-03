@@ -1,4 +1,4 @@
-# 🌳 Sustainable Code - List vs. HashSet 📊
+# 🌳 Sustainable Code - Create Empty Collections 📊
 
 A small example of how an empty collection can be created efficiently.
 
@@ -22,8 +22,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 |  Empty |  4.739 ns | 0.0956 ns | 0.0894 ns |      - |         - |
 
 ```
-
-
 
 ## 🏁 Results
 
