@@ -20,5 +20,8 @@ public class Benchmark
     public void Array() => new string[] { }.Consume(consumer);
 
     [Benchmark]
-    public void Empty() => Enumerable.Empty<string>().Consume(consumer);
+    public void ArrayEmpty() => System.Array.Empty<string>().Consume(consumer);
+
+    [Benchmark]
+    public void EnumerableEmpty() => Enumerable.Empty<string>().Consume(consumer);
 }
