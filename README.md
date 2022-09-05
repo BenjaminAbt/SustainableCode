@@ -34,6 +34,8 @@ Code samples and snippets based on .NET
 
 [.NET String ToUpper vs. ToLower](csharp/tolower-vs-toupper)
 
+[.NET Enumerate List vs. IEnumerable](list-vs-ienumerable-enumerate)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.

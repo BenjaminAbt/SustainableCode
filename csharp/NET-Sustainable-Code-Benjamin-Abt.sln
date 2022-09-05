@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-Create-Empty-Collection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-ToLwer-ToUpper", "tolower-vs-toupper\NET-ToLwer-ToUpper.csproj", "{2CA619D4-770F-4572-B324-5297C375D259}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-vs-IEnumerable-Enumerate", "list-vs-ienumerable-enumerate\NET-List-vs-IEnumerable-Enumerate.csproj", "{0E0788A6-5F58-450C-9869-2AC544B15C70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{2CA619D4-770F-4572-B324-5297C375D259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CA619D4-770F-4572-B324-5297C375D259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CA619D4-770F-4572-B324-5297C375D259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E0788A6-5F58-450C-9869-2AC544B15C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E0788A6-5F58-450C-9869-2AC544B15C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E0788A6-5F58-450C-9869-2AC544B15C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E0788A6-5F58-450C-9869-2AC544B15C70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
