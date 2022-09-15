@@ -32,6 +32,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-ToLwer-ToUpper", "tolow
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-vs-IEnumerable-Enumerate", "list-vs-ienumerable-enumerate\NET-List-vs-IEnumerable-Enumerate.csproj", "{0E0788A6-5F58-450C-9869-2AC544B15C70}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-Count-vs-Count", "list-count-property-vs-count-method\NET-List-Count-vs-Count.csproj", "{9F6E6D0E-C349-40C5-A030-C8236456B918}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{0E0788A6-5F58-450C-9869-2AC544B15C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E0788A6-5F58-450C-9869-2AC544B15C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E0788A6-5F58-450C-9869-2AC544B15C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F6E6D0E-C349-40C5-A030-C8236456B918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F6E6D0E-C349-40C5-A030-C8236456B918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F6E6D0E-C349-40C5-A030-C8236456B918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F6E6D0E-C349-40C5-A030-C8236456B918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
