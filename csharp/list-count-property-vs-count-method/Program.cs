@@ -1,5 +1,6 @@
 // Made by Benjamin Abt - https://github.com/BenjaminAbt
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
@@ -14,7 +15,7 @@ public class Benchmark
 {
     private List<int> _list;
     private HashSet<int> _hashset;
-    private int[] _array;
+    private IEnumerable<int> _ienumerable;
 
     [Params(100, 1000, 10_000)]
     public int Count { get; set; }
@@ -22,11 +23,11 @@ public class Benchmark
     [GlobalSetup]
     public void GlobalSetup()
     {
-        IEnumerable<int> range = Enumerable.Range(0, Count).ToList();
+        IEnumerable<int> range = Enumerable.Range(0, Count);
 
         _list = range.ToList();
         _hashset = new(range);
-        _array = range.ToArray();
+        _ienumerable = range;
     }
 
     [Benchmark(Baseline = true), BenchmarkCategory("List")]
@@ -39,9 +40,7 @@ public class Benchmark
     [Benchmark, BenchmarkCategory("HashSet")]
     public int HashSet_Count_Method() => _hashset.Count();
 
-    [Benchmark(Baseline = true), BenchmarkCategory("Array")]
-    public int Array_Length_Property() => _array.Length;
-    [Benchmark, BenchmarkCategory("Array")]
-    public int Array_Count_Method() => _array.Count();
+    [Benchmark, BenchmarkCategory("IEnumerable")]
+    public int IEnumerable_Count_Method() => _ienumerable.Count();
 }
 

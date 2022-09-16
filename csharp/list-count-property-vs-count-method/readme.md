@@ -1,6 +1,6 @@
 # 🌳 Sustainable Code - Count() vs Count 📊
 
-These snippets show the basic behavior of Count () and Count.
+These snippets show the basic behavior of [Count()](https://docs.microsoft.com/dotnet/api/system.linq.enumerable.count?view=net-6.0&WT.mc_id=DT-MVP-5001507) and [Count](https://docs.microsoft.com/dotnet/api/system.collections.icollection.count?view=net-6.0&WT.mc_id=DT-MVP-5001507).
 ```
 
 ## 🔥 Benchmark
@@ -13,47 +13,44 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
   DefaultJob : .NET 6.0.8 (6.0.822.36306), X64 RyuJIT AVX2
 
 
-|                 Method | Categories | Count |      Mean |     Error |    StdDev |    Median |  Ratio |
-|----------------------- |----------- |------ |----------:|----------:|----------:|----------:|-------:|
-|  Array_Length_Property |      Array |   100 | 0.0001 ns | 0.0003 ns | 0.0002 ns | 0.0000 ns |   1.00 |
-|     Array_Count_Method |      Array |   100 | 5.1354 ns | 0.1115 ns | 0.1043 ns | 5.1693 ns |  51354 |
-|                        |            |       |           |           |           |           |        |
-|  Array_Length_Property |      Array |  1000 | 0.0334 ns | 0.0161 ns | 0.0150 ns | 0.0355 ns |   1.00 |
-|     Array_Count_Method |      Array |  1000 | 5.1734 ns | 0.1075 ns | 0.1005 ns | 5.1928 ns | 221.03 |
-|                        |            |       |           |           |           |           |        |
-|  Array_Length_Property |      Array | 10000 | 0.0173 ns | 0.0110 ns | 0.0097 ns | 0.0125 ns |   1.00 |
-|     Array_Count_Method |      Array | 10000 | 5.1840 ns | 0.1229 ns | 0.1207 ns | 5.1682 ns | 366.07 |
-|                        |            |       |           |           |           |           |        |
-| HashSet_Count_Property |    HashSet |   100 | 0.0398 ns | 0.0232 ns | 0.0285 ns | 0.0256 ns |   1.00 |
-|   HashSet_Count_Method |    HashSet |   100 | 2.4635 ns | 0.0677 ns | 0.1352 ns | 2.4315 ns | 114.00 |
-|                        |            |       |           |           |           |           |        |
-| HashSet_Count_Property |    HashSet |  1000 | 0.0129 ns | 0.0157 ns | 0.0147 ns | 0.0077 ns |   1.00 |
-|   HashSet_Count_Method |    HashSet |  1000 | 2.3950 ns | 0.0514 ns | 0.0455 ns | 2.3900 ns | 185,66 |
-|                        |            |       |           |           |           |           |        |
-| HashSet_Count_Property |    HashSet | 10000 | 0.0260 ns | 0.0168 ns | 0.0158 ns | 0.0190 ns |   1.00 |
-|   HashSet_Count_Method |    HashSet | 10000 | 2.3823 ns | 0.0537 ns | 0.0502 ns | 2.3519 ns | 127.52 |
-|                        |            |       |           |           |           |           |        |
-|    List_Count_Property |       List |   100 | 0.0211 ns | 0.0143 ns | 0.0134 ns | 0.0126 ns |   1.00 |
-|      List_Count_Method |       List |   100 | 2.3773 ns | 0.0479 ns | 0.0448 ns | 2.3836 ns | 166.68 |
-|                        |            |       |           |           |           |           |        |
-|    List_Count_Property |       List |  1000 | 0.0324 ns | 0.0171 ns | 0.0151 ns | 0.0295 ns |   1.00 |
-|      List_Count_Method |       List |  1000 | 2.3827 ns | 0.0570 ns | 0.0533 ns | 2.3451 ns | 102.50 |
-|                        |            |       |           |           |           |           |        |
-|    List_Count_Property |       List | 10000 | 0.0036 ns | 0.0061 ns | 0.0057 ns | 0.0000 ns |   1.00 |
-|      List_Count_Method |       List | 10000 | 2.3807 ns | 0.0556 ns | 0.0520 ns | 2.3887 ns | 661.31 |
+|                   Method |  Categories | Count |      Mean |     Error |    StdDev |    Median |  Ratio |
+|------------------------- |------------ |------ |----------:|----------:|----------:|----------:|-------:|
+|   HashSet_Count_Property |     HashSet |   100 | 0.0185 ns | 0.0124 ns | 0.0110 ns | 0.0145 ns |   1.00 |
+|     HashSet_Count_Method |     HashSet |   100 | 2.3573 ns | 0.0370 ns | 0.0346 ns | 2.3338 ns | 171.63 |
+|                          |             |       |           |           |           |           |        |
+|   HashSet_Count_Property |     HashSet |  1000 | 0.0202 ns | 0.0114 ns | 0.0101 ns | 0.0184 ns |   1.00 |
+|     HashSet_Count_Method |     HashSet |  1000 | 2.3606 ns | 0.0294 ns | 0.0246 ns | 2.3512 ns | 137.21 |
+|                          |             |       |           |           |           |           |        |
+|   HashSet_Count_Property |     HashSet | 10000 | 0.0208 ns | 0.0100 ns | 0.0089 ns | 0.0159 ns |   1.00 |
+|     HashSet_Count_Method |     HashSet | 10000 | 2.3480 ns | 0.0043 ns | 0.0034 ns | 2.3475 ns | 129.74 |
+|                          |             |       |           |           |           |           |        |
+| IEnumerable_Count_Method | IEnumerable |   100 | 5.7990 ns | 0.0768 ns | 0.0681 ns | 5.7593 ns |      ? |
+| IEnumerable_Count_Method | IEnumerable |  1000 | 5.7819 ns | 0.0847 ns | 0.0792 ns | 5.7658 ns |      ? |
+| IEnumerable_Count_Method | IEnumerable | 10000 | 5.7495 ns | 0.0820 ns | 0.0767 ns | 5.7078 ns |      ? |
+|                          |             |       |           |           |           |           |        |
+|      List_Count_Property |        List |   100 | 0.0101 ns | 0.0109 ns | 0.0102 ns | 0.0047 ns |      ? |
+|        List_Count_Method |        List |   100 | 2.3632 ns | 0.0353 ns | 0.0276 ns | 2.3543 ns |      ? |
+|                          |             |       |           |           |           |           |        |
+|      List_Count_Property |        List |  1000 | 0.0180 ns | 0.0111 ns | 0.0104 ns | 0.0232 ns |   1.00 |
+|        List_Count_Method |        List |  1000 | 2.3701 ns | 0.0399 ns | 0.0373 ns | 2.3514 ns | 209.29 |
+|                          |             |       |           |           |           |           |        |
+|      List_Count_Property |        List | 10000 | 0.0125 ns | 0.0134 ns | 0.0126 ns | 0.0054 ns |      ? |
+|        List_Count_Method |        List | 10000 | 2.3699 ns | 0.0382 ns | 0.0358 ns | 2.3519 ns |      ? |
+
 ```
 
 
 
 ## 🏁 Results
 
-- The difference is clear: accessing the `Count` property (or `Length` in the case of the array) is much faster - and does not change even if the list contains more entries, more than x300!!!
-- Thus, when a [materialized](https://docs.microsoft.com/dotnet/standard/linq/intermediate-materialization?WT.mc_id=DT-MVP-5001507) state exists, the property is always faster.
+- The difference is clear: accessing the `Count` property is much faster - and does not change even if the list contains more entries.
+- Thus, when a [materialized](https://docs.microsoft.com/dotnet/standard/linq/intermediate-materialization?WT.mc_id=DT-MVP-5001507) state exists, the property is always faster (>100x).
 
 ## Remarks
 
-- While the property is information that is available immediately, `Count()` causes the enumerator to go over all the elements and count - every time.
-- The general use of `Count()` is therefore not advisable.
+- While the property is information that is available immediately (behind a field), `Count()` causes the enumerator to go over all the elements.
+- However, Count() is [now implemented to check if the underlying collection is materialized](https://github.com/dotnet/runtime/blob/4cf1383c8458945b7eb27ae5f57338c10ed25d54/src/libraries/System.Linq/src/System/Linq/Count.cs#L11) and has a `Count` property (`ICollection`), so in the best case the enumerator does not need to be called. Therefore, the time does not increase if the materialized lists have more entries. But the overhead of calling the Count() method still remains.
+- The general use of `Count()` is therefore not advisable, if you have `Count` and don't need additional capabilities of Count (e.g. Linq Filter).
 
 ## ⌨️ Run this sample
 
