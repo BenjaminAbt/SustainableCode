@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
+[SimpleJob(RuntimeMoniker.Net60)]
+[SimpleJob(RuntimeMoniker.Net70)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
 [CategoriesColumn]
 public class Benchmark
@@ -17,7 +20,7 @@ public class Benchmark
     private HashSet<int> _hashset;
     private IEnumerable<int> _ienumerable;
 
-    [Params(100, 1000, 10_000)]
+    [Params(1000, 10_000)]
     public int Count { get; set; }
 
     [GlobalSetup]
@@ -40,7 +43,6 @@ public class Benchmark
     [Benchmark, BenchmarkCategory("HashSet")]
     public int HashSet_Count_Method() => _hashset.Count();
 
-    [Benchmark, BenchmarkCategory("IEnumerable")]
     public int IEnumerable_Count_Method() => _ienumerable.Count();
 }
 
