@@ -34,9 +34,11 @@ Code samples and snippets based on .NET
 
 [.NET String ToUpper vs. ToLower](csharp/tolower-vs-toupper)
 
-[.NET Enumerate List vs. IEnumerable](list-vs-ienumerable-enumerate)
+[.NET Enumerate List vs. IEnumerable](csharp/list-vs-ienumerable-enumerate)
 
-[.NET List Count vs Count()](list-count-property-vs-count-method)
+[.NET List Count vs Count()](csharp/list-count-property-vs-count-method)
+
+[.NET DateTime vs. DateTimeOffset - UtcNow vs Now](csharp/datime-now-vs-utcnow)
 
 ## Energy Calculation
 

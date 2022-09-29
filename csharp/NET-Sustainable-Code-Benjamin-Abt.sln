@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-vs-IEnumerable-Enu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-Count-vs-Count", "list-count-property-vs-count-method\NET-List-Count-vs-Count.csproj", "{9F6E6D0E-C349-40C5-A030-C8236456B918}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-DateTime-Now-vs-UtcNow", "datime-now-vs-utcnow\NET-DateTime-Now-vs-UtcNow.csproj", "{549F815D-FA3B-487B-9CE3-32C1EE33686E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{9F6E6D0E-C349-40C5-A030-C8236456B918}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F6E6D0E-C349-40C5-A030-C8236456B918}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F6E6D0E-C349-40C5-A030-C8236456B918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{549F815D-FA3B-487B-9CE3-32C1EE33686E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{549F815D-FA3B-487B-9CE3-32C1EE33686E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{549F815D-FA3B-487B-9CE3-32C1EE33686E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{549F815D-FA3B-487B-9CE3-32C1EE33686E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
