@@ -9,7 +9,6 @@ using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
-[InProcess]
 [MemoryDiagnoser]
 public class Benchmark
 {
@@ -26,10 +25,10 @@ public class Benchmark
     private static readonly Func<Person, bool> s_ageExpressionCompiled = s_ageExpression.Compile();
 
     [Benchmark]
-    public Person Expression() => _persons.Where(s_ageExpression).Single();
+    public Person Ex() => _persons.Where(s_ageExpression).Single();
 
     [Benchmark(Baseline = true)]
-    public Person Expression_Compiled() => _persons.Where(s_ageExpressionCompiled).Single();
+    public Person Ex_Compiled() => _persons.Where(s_ageExpressionCompiled).Single();
 }
 
 public record class Person(string Name, int Age);
