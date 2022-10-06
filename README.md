@@ -40,6 +40,8 @@ Code samples and snippets based on .NET
 
 [.NET DateTime vs. DateTimeOffset - UtcNow vs Now](csharp/datime-now-vs-utcnow)
 
+[.NET Linq Compiled Expressions](csharp/linq-expression-compile)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
