@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-DateTime-Now-vs-UtcNow"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-Linq-Expression-Compile", "linq-expression-compile\NET-Linq-Expression-Compile.csproj", "{3420D83A-F9BA-4D56-B27A-218138017C5F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-String-Create-Runtime-Comparison", "string-create-runtime-comparison\NET-String-Create-Runtime-Comparison.csproj", "{7F46E04A-0DC5-4E51-AAC8-9859B7AA7482}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{3420D83A-F9BA-4D56-B27A-218138017C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3420D83A-F9BA-4D56-B27A-218138017C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3420D83A-F9BA-4D56-B27A-218138017C5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F46E04A-0DC5-4E51-AAC8-9859B7AA7482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F46E04A-0DC5-4E51-AAC8-9859B7AA7482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F46E04A-0DC5-4E51-AAC8-9859B7AA7482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F46E04A-0DC5-4E51-AAC8-9859B7AA7482}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
