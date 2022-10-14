@@ -46,7 +46,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## 🏁 Results
 
 - 🔋 Pattern Matching has a similar performance as a classic reference match.
-- 🏎️ But when dealing with structs, a significant loss of performance is measurable, sometimes by a factor of 250.
+- 🏎️ But when dealing with (nullable) structs, a significant loss of performance is measurable, sometimes by a factor of 250.
 
 
 ## Remarks
