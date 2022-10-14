@@ -26,7 +26,7 @@ public class Benchmark
     [ArgumentsSource(nameof(Class_Arguments))]
     public MyClass? Class_PatternMatching(MyClass? myClass, string title)
     {
-        if (myClass is MyClass val) { return myClass; }
+        if (myClass is MyClass val) { return val; }
         return null;
     }
 
