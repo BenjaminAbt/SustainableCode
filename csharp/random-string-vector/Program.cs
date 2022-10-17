@@ -1,4 +1,5 @@
 // This example was provided by https://github.com/gfoidl to illustrate what is possible with "lower level programming in .NET".
+// https://github.com/BenjaminAbt/SustainableCode/tree/main/csharp/random-string
 
 /* RESULTS
  * 
