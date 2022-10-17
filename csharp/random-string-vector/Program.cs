@@ -10,27 +10,22 @@
  *   DefaultJob : .NET 7.0.0 (7.0.22.47203), X64 RyuJIT AVX2
  * 
  * 
- * |       Method | CharLength |        Mean |     Error |    StdDev | Ratio | RatioSD |
- * |------------- |----------- |------------:|----------:|----------:|------:|--------:|
- * | StringCreate |         10 |    83.80 ns |  1.698 ns |  1.668 ns |  1.00 |    0.00 |
- * |   Vectorized |         10 |    82.21 ns |  1.670 ns |  1.481 ns |  0.98 |    0.02 |
- * |              |            |             |           |           |       |         |
- * | StringCreate |        100 |   738.45 ns |  8.001 ns |  7.484 ns |  1.00 |    0.00 |
- * |   Vectorized |        100 |    89.81 ns |  1.724 ns |  1.528 ns |  0.12 |    0.00 |
- * |              |            |             |           |           |       |         |
- * | StringCreate |       1000 | 7,480.91 ns | 89.578 ns | 83.791 ns |  1.00 |    0.00 |
- * |   Vectorized |       1000 |   377.54 ns |  6.273 ns |  6.712 ns |  0.05 |    0.00 |
+ * |       Method | CharLength |        Mean |     Error |    StdDev | Ratio |
+ * |------------- |----------- |------------:|----------:|----------:|------:|
+ * | StringCreate |         10 |    83.73 ns |  1.206 ns |  1.069 ns |  1.00 |
+ * |   Vectorized |         10 |    76.56 ns |  0.233 ns |  0.207 ns |  0.91 |
+ * |              |            |             |           |           |       |
+ * | StringCreate |        100 |   740.87 ns |  1.951 ns |  1.825 ns |  1.00 |
+ * |   Vectorized |        100 |    77.88 ns |  0.725 ns |  0.678 ns |  0.11 |
+ * |              |            |             |           |           |       |
+ * | StringCreate |       1000 | 7,438.46 ns | 25.437 ns | 23.793 ns |  1.00 |
+ * |   Vectorized |       1000 |   365.80 ns |  2.458 ns |  2.179 ns |  0.05 |
  * 
  * */
 
 
 // ================================================
-// comment this out to run in DEBUG
-#define BENCH 
-
 using System;
-using System.Threading;
-using System.Buffers;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -51,18 +46,8 @@ for (int i = 0; i < 10; ++i)
     Console.WriteLine(bench.Vectorized());
 }
 #else
-#if BENCH
 BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark>();
-#else
-for (int i = 0; i < 100; ++i)
-{
-    if (i % 10 == 0) Thread.Sleep(100);
-
-    _ = bench.Vectorized();
-}
 #endif
-#endif
-
 
 public class Benchmark
 {
@@ -108,7 +93,7 @@ public static class StringCreateSample
 
 public static class VectorSample
 {
-    private static readonly Random s_random = new(0);
+    private static ReadOnlySpan<byte> AlphNum => "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"u8;
 
     public static string CreateRandomString(int length)
     {
@@ -116,6 +101,7 @@ public static class VectorSample
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [SkipLocalsInit]
     private static unsafe void CreateRandomString(Span<char> buffer)
     {
         if (Avx2.IsSupported && buffer.Length >= 2 * Vector256<ushort>.Count)
@@ -134,26 +120,26 @@ public static class VectorSample
 
     private static void CreateRandomStringScalar(Span<char> buffer)
     {
-        const string Chars = SampleConstants.AlphNum;
-        int charsLength = Chars.Length;
+        ReadOnlySpan<byte> chars = AlphNum;
+        int charsLength = chars.Length;
 
         for (int i = 0; i < buffer.Length; ++i)
         {
-            buffer[i] = Chars[s_random.Next(charsLength)];
+            buffer[i] = (char)chars[Random.Shared.Next(charsLength)];
         }
     }
 
-    [SkipLocalsInit]
     private static unsafe void CreateRandomStringVectorized(Span<char> buffer, byte* seedChars)
     {
-        const string Chars = SampleConstants.AlphNum;
+        Vector256<int> seed = Vector256.Create(
+            Random.Shared.NextInt64(),
+            Random.Shared.NextInt64(),
+            Random.Shared.NextInt64(),
+            Random.Shared.NextInt64()
+        ).AsInt32();
 
-        Debug.Assert(Chars.Length == 62);
-
-        // seedChars could also be given as ROS<byte>, depending on use case.
-        // Especially with C# 11's UTF-8 literals, e.g. "ABCD..."u8
-        ref ushort chars = ref Unsafe.As<char, ushort>(ref Unsafe.AsRef(Chars.GetPinnableReference()));
-        PackToBytes(ref chars, seedChars);
+        Debug.Assert(AlphNum.Length == 62);
+        PackToBytes(ref MemoryMarshal.GetReference(AlphNum), seedChars);
 
         Vector256<byte> seedVec0 = Vector256.Load(seedChars);
         Vector256<byte> seedVec1 = Vector256.Load(seedChars + Vector256<byte>.Count);
@@ -161,12 +147,6 @@ public static class VectorSample
         Vector256<float> upperForVec = Vector256.Create((float)(Vector256<byte>.Count - 1));
         Vector256<float> one = Vector256.Create(1f);
         Vector256<int> mantissaMask = Vector256.Create(0x7FFFFF);
-        Vector256<int> seed = Vector256.Create(
-            Random.Shared.NextInt64(),
-            Random.Shared.NextInt64(),
-            Random.Shared.NextInt64(),
-            Random.Shared.NextInt64()
-        ).AsInt32();
 
         ref ushort dest = ref Unsafe.As<char, ushort>(ref MemoryMarshal.GetReference(buffer));
         ref ushort twoVectorsAwayFromEnd = ref Unsafe.Add(ref dest, (uint)(buffer.Length - 2 * Vector256<ushort>.Count));
@@ -181,45 +161,28 @@ public static class VectorSample
         Core(ref twoVectorsAwayFromEnd, seedVec0, seedVec1, ref seed, mantissaMask, one, upperForVec);
         //---------------------------------------------------------------------
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static void PackToBytes(ref ushort chars, byte* seed)
+        static void PackToBytes(ref byte chars, byte* seed)
         {
-            ref short charsAsInt16 = ref Unsafe.As<ushort, short>(ref chars);
-
-            // Clear the seed (len = 32, i.e. Vector256<byte> size)
-            Vector256<byte>.Zero.Store(seed);
 #if DEBUG
+            // Clear the seed to aid debugging. We have len 62, so 32 + 16 and the remainder from the end.
+            Vector256<byte>.Zero.Store(seed);
+            Vector128<byte>.Zero.Store(seed + Vector256<byte>.Count);
+            Vector128<byte>.Zero.Store(seed + 62 - Vector128<byte>.Count);
+
             seed[62] = (byte)'=';
             seed[63] = (byte)'=';
 #endif
-            // We read 32 chars, pack them to 32 bytes
-            // Then 30 chars remain
-            //
-            // // Use hw-intrinsics as they don't perform additional AND like Vector256.Narrow does
-            Vector256<byte> narrowed256 = Avx2.PackUnsignedSaturate(
-                Vector256.LoadUnsafe(ref charsAsInt16),
-                Vector256.LoadUnsafe(ref charsAsInt16, (uint)Vector256<ushort>.Count));
-            narrowed256 = Avx2.Permute4x64(narrowed256.AsInt64(), 0b_11_01_10_00).AsByte();
+            // We have 62 chars (given as byte), so read 32.
+            // Then 30 chars (given as byte) remain.
+            Vector256.LoadUnsafe(ref chars).Store(seed);
 
-            narrowed256.Store(seed);
-
-            nuint offset = 2 * (uint)Vector256<ushort>.Count;
-
-            // We read 16 chars, pack them to 16 bytes
-            // Then 14 chars remain
-            Vector128<byte> narrowed128 = Sse2.PackUnsignedSaturate(
-                Vector128.LoadUnsafe(ref charsAsInt16, offset),
-                Vector128.LoadUnsafe(ref charsAsInt16, offset + (uint)Vector128<ushort>.Count));
-
-            narrowed128.Store(seed + Vector256<byte>.Count);
+            // We read 16 chars (given as byte).
+            // Then 14 chars (given as byte) remain.
+            Vector128.LoadUnsafe(ref chars, (uint)Vector256<byte>.Count).Store(seed + Vector256<byte>.Count);
 
             // For the remaining 14 chars we read 16 chars from the end, as the operation is idempotent.
-            offset = 62 - 2 * (uint)Vector128<ushort>.Count;
-
-            narrowed128 = Sse2.PackUnsignedSaturate(
-                Vector128.LoadUnsafe(ref charsAsInt16, offset),
-                Vector128.LoadUnsafe(ref charsAsInt16, offset + (uint)Vector128<ushort>.Count));
-
-            narrowed128.Store(seed + offset);
+            nuint offset = 62 - (uint)Vector128<byte>.Count;
+            Vector128.LoadUnsafe(ref chars, offset).Store(seed + offset);
 #if DEBUG
             Debug.Assert(seed[62] == (byte)'=');
             Debug.Assert(seed[63] == (byte)'=');
