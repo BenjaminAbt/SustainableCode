@@ -44,6 +44,8 @@ Code samples and snippets based on .NET
 
 [.NET Nullable Value Access (Pattern Matching)](csharp/nullable-value-access)
 
+[.NET String Create Value Stringbuilder)](csharp/valuestringbuilder)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
