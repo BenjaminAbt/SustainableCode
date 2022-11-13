@@ -1,7 +1,6 @@
 # 🌳 Sustainable Code - Count() vs Count 📊
 
 These snippets show the basic behavior of [Count()](https://docs.microsoft.com/dotnet/api/system.linq.enumerable.count?view=net-6.0&WT.mc_id=DT-MVP-5001507) and [Count](https://docs.microsoft.com/dotnet/api/system.collections.icollection.count?view=net-6.0&WT.mc_id=DT-MVP-5001507).
-```
 
 ## 🔥 Benchmark
 
@@ -39,12 +38,8 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 |                        |          |            |       |           |
 |    List_Count_Property | .NET 7.0 |       List | 10000 | 0.0015 ns |
 |      List_Count_Method | .NET 7.0 |       List | 10000 | 2.1750 ns |
-
-*Some columns of the output were removed*
-
 ```
-
-
+*Some columns of the output were removed*
 
 ## 🏁 Results
 
