@@ -50,6 +50,8 @@ Code samples and snippets based on .NET
 
 [.NET Struct vs Class- Boxing](csharp/struct-vs-class-boxing)
 
+[.NET Condition vs Exception](csharp/condition-vs-exception)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
