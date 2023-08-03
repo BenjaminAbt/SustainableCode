@@ -20,4 +20,3 @@ public class Benchmark
     private int CalcWithIn(in int a, in int b, in int c, in int d) => a * b * c / d;
     private int CalcWithOutIn(int a, int b, int c, int d) => a * b * c / d;
 }
-
