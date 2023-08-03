@@ -52,6 +52,8 @@ Code samples and snippets based on .NET
 
 [.NET Condition vs Exception](csharp/condition-vs-exception)
 
+[.NET SHA512 Create](csharp/Sha512-Create-Speed)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.

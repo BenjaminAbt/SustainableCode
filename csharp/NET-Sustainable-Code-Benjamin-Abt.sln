@@ -52,6 +52,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-Struct-vs-Class-Boxing"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-Condition-vs-Exception", "condition-vs-exception\NET-Condition-vs-Exception.csproj", "{0EFCE8DF-BCD4-4CFF-A8A1-7E6E416019A5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-Sha512-Create-Speed", "Sha512-Create-Speed\NET-Sha512-Create-Speed.csproj", "{3332965D-9DA3-44A8-A7D8-1D4FC134AC51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -146,6 +148,10 @@ Global
 		{0EFCE8DF-BCD4-4CFF-A8A1-7E6E416019A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EFCE8DF-BCD4-4CFF-A8A1-7E6E416019A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EFCE8DF-BCD4-4CFF-A8A1-7E6E416019A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3332965D-9DA3-44A8-A7D8-1D4FC134AC51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3332965D-9DA3-44A8-A7D8-1D4FC134AC51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3332965D-9DA3-44A8-A7D8-1D4FC134AC51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3332965D-9DA3-44A8-A7D8-1D4FC134AC51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
