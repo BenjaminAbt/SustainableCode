@@ -23,7 +23,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ```
 
 
-
 ## 🏁 Results
 
 - 🚀 In this very simple sample, without `in` is faster

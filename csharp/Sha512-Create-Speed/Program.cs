@@ -39,5 +39,9 @@ public class Benchmark
         }
         return data;
     }
+
+    [Benchmark]
+    public byte[] HashData() => SHA512.HashData(_sampleData);
+
 }
 

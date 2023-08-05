@@ -1,6 +1,6 @@
 # 🌳 Sustainable Code - SHA512 Create 📊
 
-SHA512 is a class whose compute functions cannot in principle be shared across multiple threads: they are not thread-safe.
+SHA512 is a class whose compute functions cannot in principle be shared across multiple threads: their instances are not thread-safe.
 
 ## 🔥 Benchmark
 
@@ -12,15 +12,21 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
   DefaultJob : .NET 6.0.20 (6.0.2023.32017), X64 RyuJIT AVX2
 
 
-| Method |     Mean |     Error |    StdDev |   Gen0 | Allocated |
-|------- |---------:|----------:|----------:|-------:|----------:|
-| Create | 1.858 us | 0.0365 us | 0.0405 us | 0.0172 |     304 B |
-|   Lock | 1.621 us | 0.0322 us | 0.0301 us | 0.0095 |     176 B |
+|   Method |     Mean |     Error |    StdDev |   Gen0 | Allocated |
+|--------- |---------:|----------:|----------:|-------:|----------:|
+|   Create | 1.730 us | 0.0115 us | 0.0096 us | 0.0172 |     304 B |
+|     Lock | 1.536 us | 0.0214 us | 0.0190 us | 0.0095 |     176 B |
+| HashData | 1.600 us | 0.0190 us | 0.0177 us | 0.0038 |      88 B |
 ```
 
 ## 🏁 Results
 
-- 🔋 Using one instance is faster, more economical and more sustainable than constantly recreating
+- 🏎️ Using one instance (with `lock`) is faster than constantly recreating
+- 🔋 Using the new static `HashData` is still the most sustainable
+
+## Remarks
+
+- In newer .NET versions, static functions are available and should be used.
 
 ## ⌨️ Run this sample
 
