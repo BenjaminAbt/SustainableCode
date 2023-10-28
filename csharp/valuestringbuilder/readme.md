@@ -13,23 +13,22 @@ See more here
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19044.2251/21H2/November2021Update)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=7.0.100
-  [Host]   : .NET 6.0.11 (6.0.1122.52304), X64 RyuJIT AVX2
-  .NET 6.0 : .NET 6.0.11 (6.0.1122.52304), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX2
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
-
-|                  Method |  Runtime |     Mean |    Error |   StdDev |   Gen0 | Allocated |
-|------------------------ |--------- |---------:|---------:|---------:|-------:|----------:|
-|       StringCreate_Case | .NET 6.0 | 13.79 ns | 0.157 ns | 0.147 ns | 0.0067 |     112 B |
-|         StringJoin_Case | .NET 6.0 | 20.32 ns | 0.197 ns | 0.174 ns | 0.0062 |     104 B |
-| ValueStringBuilder_Case | .NET 6.0 | 36.38 ns | 0.170 ns | 0.159 ns | 0.0033 |      56 B |
-|       StringCreate_Case | .NET 7.0 | 15.59 ns | 0.133 ns | 0.124 ns | 0.0067 |     112 B |
-|         StringJoin_Case | .NET 7.0 | 23.33 ns | 0.275 ns | 0.257 ns | 0.0062 |     104 B |
-| ValueStringBuilder_Case | .NET 7.0 | 36.70 ns | 0.393 ns | 0.348 ns | 0.0033 |      56 B |
-
+| Method                  | Runtime  | Error    | StdDev   | Gen0   | Allocated |
+|------------------------ |--------- |---------:|---------:|-------:|----------:|
+| StringCreate_Case       | .NET 7.0 | 0.368 ns | 0.492 ns | 0.0067 |     112 B |
+| StringCreate_Case       | .NET 8.0 | 0.257 ns | 0.241 ns | 0.0067 |     112 B |
+| StringJoin_Case         | .NET 7.0 | 0.466 ns | 0.572 ns | 0.0062 |     104 B |
+| StringJoin_Case         | .NET 8.0 | 0.465 ns | 0.620 ns | 0.0062 |     104 B |
+|                         |          |          |          |        |           |
+| ValueStringBuilder_Case | .NET 7.0 | 0.749 ns | 0.701 ns | 0.0033 |      56 B |
+| ValueStringBuilder_Case | .NET 8.0 | 0.714 ns | 0.668 ns | 0.0033 |      56 B |
 ```
 
 
@@ -48,4 +47,6 @@ String.Create remains by far the most performant way to create strings for short
 dotnet run -c Release
 ```
 
-As reference, this benchmark takes ~2mins to run.
+## Updates
+
+- 2023/11 - Add .NET 8

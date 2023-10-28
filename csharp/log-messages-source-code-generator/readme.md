@@ -7,18 +7,24 @@ This sample, based on .NET and [Compile-time logging source generation]](https:/
 For better comparability, additional string concat were added.
 
 ```
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19043.1348 (21H1/May2021Update)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=6.0.100
-  [Host]     : .NET 6.0.0 (6.0.21.52210), X64 RyuJIT
-  DefaultJob : .NET 6.0.0 (6.0.21.52210), X64 RyuJIT
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
 
-|              Method |     Mean |   Error |  StdDev | Ratio | RatioSD |  Gen 0 | Allocated |
-|-------------------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|
-| SourceCodeGenerated | 122.1 ns | 2.09 ns | 1.96 ns |  1.00 |    0.00 |      - |         - |
-|              Concat | 216.5 ns | 4.29 ns | 5.73 ns |  1.76 |    0.05 | 0.0286 |     480 B |
-|       Interpolation | 212.3 ns | 2.74 ns | 2.43 ns |  1.74 |    0.03 | 0.0286 |     480 B |
+| Method              | Runtime  | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated |
+|-------------------- |--------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|
+| SourceCodeGenerated | .NET 7.0 | 114.4 ns | 2.30 ns | 2.15 ns |  1.00 |    0.00 |      - |         - |
+| SourceCodeGenerated | .NET 8.0 | 109.0 ns | 1.83 ns | 1.71 ns |  1.00 |    0.00 |      - |         - |
+|                     |          |          |         |         |       |         |        |           |
+| Concat              | .NET 7.0 | 176.2 ns | 3.49 ns | 3.88 ns |  1.54 |    0.05 | 0.0286 |     480 B |
+| Concat              | .NET 8.0 | 148.5 ns | 2.94 ns | 3.72 ns |  1.37 |    0.04 | 0.0286 |     480 B |
+|                     |          |          |         |         |       |         |        |           |
+| Interpolation       | .NET 7.0 | 178.8 ns | 3.52 ns | 3.91 ns |  1.57 |    0.05 | 0.0286 |     480 B |
+| Interpolation       | .NET 8.0 | 147.9 ns | 2.54 ns | 4.03 ns |  1.38 |    0.04 | 0.0286 |     480 B |
 ```
 
 ## 🏁 Results
@@ -46,4 +52,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark runs 1:19min on my workstation
+## Updates
+
+- 2023/11 - Add .NET 8

@@ -10,19 +10,24 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1706 (21H2)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=6.0.300
-  [Host]     : .NET 6.0.5 (6.0.522.21309), X64 RyuJIT
-  DefaultJob : .NET 6.0.5 (6.0.522.21309), X64 RyuJIT
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
-|          Method |      Mean |     Error |    StdDev |  Gen 0 | Allocated |
-|---------------- |----------:|----------:|----------:|-------:|----------:|
-|            List | 14.112 ns | 0.2331 ns | 0.2775 ns | 0.0043 |      72 B |
-|           Array |  9.364 ns | 0.1745 ns | 0.1632 ns | 0.0014 |      24 B |
-|      ArrayEmpty |  7.712 ns | 0.0427 ns | 0.0378 ns |      - |         - |
-| EnumerableEmpty |  4.690 ns | 0.0252 ns | 0.0223 ns |      - |         - |
 
+| Method          | Job      | Runtime  | Mean      | Error     | StdDev    | Gen0   | Allocated |
+|---------------- |--------- |--------- |----------:|----------:|----------:|-------:|----------:|
+| List            | .NET 7.0 | .NET 7.0 | 15.012 ns | 0.3203 ns | 0.7486 ns | 0.0043 |      72 B |
+| Array           | .NET 7.0 | .NET 7.0 |  9.971 ns | 0.1997 ns | 0.1868 ns | 0.0014 |      24 B |
+| ArrayEmpty      | .NET 7.0 | .NET 7.0 |  7.033 ns | 0.0773 ns | 0.0604 ns |      - |         - |
+| EnumerableEmpty | .NET 7.0 | .NET 7.0 |  3.844 ns | 0.0942 ns | 0.0881 ns |      - |         - |
+| List            | .NET 8.0 | .NET 8.0 |  8.932 ns | 0.1964 ns | 0.1741 ns | 0.0019 |      32 B |
+| Array           | .NET 8.0 | .NET 8.0 |  8.507 ns | 0.1887 ns | 0.2098 ns | 0.0014 |      24 B |
+| ArrayEmpty      | .NET 8.0 | .NET 8.0 |  6.069 ns | 0.1249 ns | 0.1169 ns |      - |         - |
+| EnumerableEmpty | .NET 8.0 | .NET 8.0 |  1.935 ns | 0.0260 ns | 0.0203 ns |      - |         - |
 ```
 
 ## 🏁 Results
@@ -41,8 +46,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark takes ~1.2mins to run on my machine.
-
 ## Updates
 
-- Added `Array.Empty` sample
+- 2023/11 - Add .NET 8

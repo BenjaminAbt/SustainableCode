@@ -25,23 +25,26 @@ public List<MyEntity> GetEntities()
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1889 (21H2)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=6.0.400
-  [Host]     : .NET 6.0.8 (6.0.822.36306), X64 RyuJIT
-  DefaultJob : .NET 6.0.8 (6.0.822.36306), X64 RyuJIT
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
-
-|                  Method |       Mean |    Error |   StdDev |  Gen 0 |  Gen 1 | Allocated |
-|------------------------ |-----------:|---------:|---------:|-------:|-------:|----------:|
-|             IEnumerable | 2,936.9 ns | 57.07 ns | 88.85 ns |      - |      - |      40 B |
-|      IEnumerable_ToList | 1,453.0 ns |  6.90 ns |  5.77 ns | 0.2422 | 0.0019 |   4,056 B |
-|                    List |   655.7 ns |  5.16 ns |  4.83 ns |      - |      - |         - |
-|        List_IEnumerable | 4,287.2 ns |  8.81 ns |  7.35 ns |      - |      - |      40 B |
-| List_IEnumerable_ToList |   820.2 ns | 10.92 ns |  9.68 ns | 0.2422 | 0.0029 |   4,056 B |
+| Method                  | Job      | Runtime  | Mean       | Error    | StdDev   | Gen0   | Allocated |
+|------------------------ |--------- |--------- |-----------:|---------:|---------:|-------:|----------:|
+| List                    | .NET 7.0 | .NET 7.0 |   438.3 ns |  8.39 ns |  8.24 ns |      - |         - |
+| List                    | .NET 8.0 | .NET 8.0 |   436.8 ns |  8.75 ns |  9.36 ns |      - |         - |
+| List_IEnumerable_ToList | .NET 7.0 | .NET 7.0 |   636.6 ns | 12.54 ns | 14.93 ns | 0.2422 |    4056 B |
+| List_IEnumerable_ToList | .NET 8.0 | .NET 8.0 |   599.2 ns | 11.94 ns | 22.73 ns | 0.2422 |    4056 B |
+| IEnumerable_ToList      | .NET 7.0 | .NET 7.0 | 1,447.5 ns | 27.83 ns | 29.78 ns | 0.2422 |    4056 B |
+| IEnumerable_ToList      | .NET 8.0 | .NET 8.0 |   611.3 ns | 12.08 ns | 26.01 ns | 0.2422 |    4056 B |
+| IEnumerable             | .NET 7.0 | .NET 7.0 | 2,645.1 ns | 48.93 ns | 48.05 ns |      - |      40 B |
+| IEnumerable             | .NET 8.0 | .NET 8.0 |   532.0 ns | 10.43 ns |  9.76 ns | 0.0019 |      40 B |
+| List_IEnumerable        | .NET 7.0 | .NET 7.0 | 4,232.0 ns | 83.24 ns | 89.07 ns |      - |      40 B |
+| List_IEnumerable        | .NET 8.0 | .NET 8.0 | 1,071.4 ns | 20.83 ns | 20.45 ns | 0.0019 |      40 B |
 ```
-
-
 
 ## 🏁 Results
 
@@ -65,4 +68,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark takes ~2mins to run on my machine.
+## Updates
+
+- 2023/11 - Add .NET 8

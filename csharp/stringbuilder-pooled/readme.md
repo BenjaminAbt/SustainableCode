@@ -1,6 +1,6 @@
 # 🌳 Sustainable Code - String Builder Pooled Performance Comparison 📊
 
-This sample, based on .NET 6 RC2 and the [Object Pool Pattern](https://docs.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1?view=dotnet-plat-ext-5.0&WT.mc_id=DT-MVP-5001507), shows very clearly how the reuse of object instances can massively increase performance while reducing memory consumption.
+This sample, based on the [Object Pool Pattern](https://docs.microsoft.com/dotnet/api/microsoft.extensions.objectpool.objectpool-1?view=dotnet-plat-ext-5.0&WT.mc_id=DT-MVP-5001507), shows very clearly how the reuse of object instances can massively increase performance while reducing memory consumption.
 
 Sample with ASP.NET Core: [Object reuse with ObjectPool in ASP.NET Core](https://docs.microsoft.com/aspnet/core/performance/objectpool?view=aspnetcore-5.0&WT.mc_id=DT-MVP-5001507)
 
@@ -8,7 +8,9 @@ Sample with ASP.NET Core: [Object reuse with ObjectPool in ASP.NET Core](https:/
 
 For better comparability, additional string concat were added.
 
-![Results](results.png)
+```shell
+
+```
 
 ## 🏁 Results
 
@@ -32,4 +34,6 @@ For better comparability, additional string concat were added.
 dotnet run -c Release
 ```
 
-This benchmark runs several minutes (2:50min on my workstation)
+## Updates
+
+- 2023/11 - Add .NET 8

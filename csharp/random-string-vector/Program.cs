@@ -1,5 +1,4 @@
-// This example was provided by https://github.com/gfoidl to illustrate what is possible with "lower level programming in .NET".
-// https://github.com/BenjaminAbt/SustainableCode/tree/main/csharp/random-string
+// Made by Benjamin Abt - https://github.com/BenjaminAbt
 
 /* RESULTS
  * 
@@ -32,6 +31,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 
 Benchmark bench = new()
 {
@@ -49,6 +49,8 @@ for (int i = 0; i < 10; ++i)
 BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark>();
 #endif
 
+[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net80)]
 public class Benchmark
 {
     [Params(10, 100, 1000)]

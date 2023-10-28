@@ -9,20 +9,21 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1645 (21H2)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=6.0.300-preview.22204.3
-  [Host]     : .NET 6.0.4 (6.0.422.16404), X64 RyuJIT
-  DefaultJob : .NET 6.0.4 (6.0.422.16404), X64 RyuJIT
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
 
-|       Method |     Mean |    Error |   StdDev |  Gen 0 | Allocated |
-|------------- |---------:|---------:|---------:|-------:|----------:|
-|       String | 36.41 ns | 0.142 ns | 0.126 ns | 0.0033 |      56 B |
-| StringCreate | 23.10 ns | 0.267 ns | 0.250 ns | 0.0033 |      56 B |
+| Method       | Job      | Runtime  | Mean     | Error    | StdDev   | Gen0   | Allocated |
+|------------- |--------- |--------- |---------:|---------:|---------:|-------:|----------:|
+| String       | .NET 7.0 | .NET 7.0 | 37.46 ns | 0.785 ns | 1.020 ns | 0.0033 |      56 B |
+| StringCreate | .NET 7.0 | .NET 7.0 | 23.99 ns | 0.506 ns | 0.562 ns | 0.0033 |      56 B |
+| String       | .NET 8.0 | .NET 8.0 | 38.10 ns | 0.725 ns | 0.678 ns | 0.0033 |      56 B |
+| StringCreate | .NET 8.0 | .NET 8.0 | 21.19 ns | 0.431 ns | 0.403 ns | 0.0033 |      56 B |
 ```
-
-
 
 ## 🏁 Results
 
@@ -40,4 +41,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark takes 46secs on my machine.
+## Updates
+
+- 2023/11 - Add .NET 8

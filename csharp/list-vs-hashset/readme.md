@@ -9,24 +9,41 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1645 (21H2)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=6.0.300-preview.22204.3
-  [Host]     : .NET 6.0.4 (6.0.422.16404), X64 RyuJIT
-  DefaultJob : .NET 6.0.4 (6.0.422.16404), X64 RyuJIT
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
-
-|       Method | Count |        Mean |     Error |    StdDev |  Gen 0 |  Gen 1 | Allocated |
-|------------- |------ |------------:|----------:|----------:|-------:|-------:|----------:|
-|    ListWrite |    10 |    27.95 ns |  0.533 ns |  0.499 ns | 0.0057 |      - |      96 B |
-| HashSetWrite |    10 |    65.16 ns |  1.283 ns |  1.798 ns | 0.0176 |      - |     296 B |
-| ListDistinct |    10 |   183.01 ns |  3.544 ns |  4.081 ns | 0.0353 |      - |     592 B |
-|    ListWrite |   100 |   195.04 ns |  3.795 ns |  5.066 ns | 0.0272 |      - |     456 B |
-| HashSetWrite |   100 |   565.76 ns |  5.673 ns |  5.307 ns | 0.1087 |      - |   1,832 B |
-| ListDistinct |   100 | 1,305.11 ns | 19.237 ns | 17.994 ns | 0.1698 |      - |   2,848 B |
-|    ListWrite |   500 | 1,030.15 ns | 20.278 ns | 27.070 ns | 0.1221 |      - |   2,056 B |
-| HashSetWrite |   500 | 2,718.36 ns | 21.541 ns | 17.987 ns | 0.5035 | 0.0153 |   8,456 B |
-| ListDistinct |   500 | 6,173.36 ns | 38.981 ns | 36.463 ns | 0.7553 | 0.0229 |  12,672 B |
+| Method       | Runtime  | Count | Mean        | Error     | StdDev    | Gen0   | Gen1   | Allocated |
+|------------- |--------- |------ |------------:|----------:|----------:|-------:|-------:|----------:|
+| ListWrite    | .NET 7.0 | 10    |    29.24 ns |  0.512 ns |  0.479 ns | 0.0057 |      - |      96 B |
+| ListWrite    | .NET 8.0 | 10    |    17.70 ns |  0.372 ns |  0.348 ns | 0.0057 |      - |      96 B |
+|              |          |       |             |           |           |        |        |           |
+| HashSetWrite | .NET 7.0 | 10    |    77.12 ns |  1.555 ns |  2.804 ns | 0.0176 |      - |     296 B |
+| HashSetWrite | .NET 8.0 | 10    |    68.13 ns |  1.347 ns |  1.843 ns | 0.0176 |      - |     296 B |
+|              |          |       |             |           |           |        |        |           |
+| ListDistinct | .NET 7.0 | 10    |   199.39 ns |  3.804 ns |  3.736 ns | 0.0353 |      - |     592 B |
+| ListDistinct | .NET 8.0 | 10    |   179.22 ns |  3.521 ns |  3.458 ns | 0.0353 |      - |     592 B |
+|              |          |       |             |           |           |        |        |           |
+| ListWrite    | .NET 7.0 | 100   |   205.82 ns |  3.058 ns |  2.711 ns | 0.0272 |      - |     456 B |
+| ListWrite    | .NET 8.0 | 100   |    96.70 ns |  1.599 ns |  1.496 ns | 0.0272 |      - |     456 B |
+|              |          |       |             |           |           |        |        |           |
+| HashSetWrite | .NET 7.0 | 100   |   642.95 ns |  5.789 ns |  5.132 ns | 0.1087 |      - |    1832 B |
+| HashSetWrite | .NET 8.0 | 100   |   526.90 ns |  6.265 ns |  5.861 ns | 0.1087 |      - |    1832 B |
+|              |          |       |             |           |           |        |        |           |
+| ListDistinct | .NET 7.0 | 100   | 1,466.94 ns | 27.696 ns | 25.907 ns | 0.1698 |      - |    2848 B |
+| ListDistinct | .NET 8.0 | 100   | 1,026.49 ns | 11.527 ns | 10.782 ns | 0.1698 |      - |    2848 B |
+|              |          |       |             |           |           |        |        |           |
+| ListWrite    | .NET 7.0 | 500   |   967.23 ns | 15.021 ns | 14.051 ns | 0.1221 |      - |    2056 B |
+| ListWrite    | .NET 8.0 | 500   |   440.48 ns |  6.749 ns |  6.313 ns | 0.1225 |      - |    2056 B |
+|              |          |       |             |           |           |        |        |           |
+| HashSetWrite | .NET 7.0 | 500   | 2,831.40 ns | 23.379 ns | 19.522 ns | 0.5035 |      - |    8456 B |
+| HashSetWrite | .NET 8.0 | 500   | 2,434.14 ns | 37.114 ns | 41.252 ns | 0.5035 |      - |    8456 B |
+|              |          |       |             |           |           |        |        |           |
+| ListDistinct | .NET 7.0 | 500   | 6,531.18 ns | 64.563 ns | 57.233 ns | 0.7553 | 0.0153 |   12672 B |
+| ListDistinct | .NET 8.0 | 500   | 4,712.75 ns | 62.142 ns | 51.891 ns | 0.7553 | 0.0153 |   12672 B |
 ```
 
 
@@ -47,4 +64,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark takes ~3.5mins to run on my machine.
+## Updates
+
+- 2023/11 - Add .NET 8

@@ -9,22 +9,27 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19044.2486/21H2/November2021Update)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=7.0.200-preview.22628.1
-  [Host]     : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2
-  DefaultJob : .NET 6.0.13 (6.0.1322.58009), X64 RyuJIT AVX2
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
-
-|              Method |      Mean |     Error |    StdDev |    Median |   Gen0 | Allocated |
-|-------------------- |----------:|----------:|----------:|----------:|-------:|----------:|
-|               Class | 2.9964 ns | 0.0713 ns | 0.0667 ns | 3.0374 ns | 0.0014 |      24 B |
-|  ClassWithInterface | 3.0590 ns | 0.1043 ns | 0.0976 ns | 3.0742 ns | 0.0014 |      24 B |
-|              Struct | 0.0018 ns | 0.0030 ns | 0.0023 ns | 0.0012 ns |      - |         - |
-| StructWithInterface | 3.1241 ns | 0.0835 ns | 0.0781 ns | 3.1147 ns | 0.0014 |      24 B |
+| Method              | Job      | Runtime  | Mean      | Error     | StdDev    | Median    | Gen0   | Allocated |
+|-------------------- |--------- |--------- |----------:|----------:|----------:|----------:|-------:|----------:|
+| Class               | .NET 7.0 | .NET 7.0 | 3.9827 ns | 0.1245 ns | 0.1332 ns | 3.9282 ns | 0.0014 |      24 B |
+| Class               | .NET 8.0 | .NET 8.0 | 3.0353 ns | 0.1014 ns | 0.1041 ns | 3.0008 ns | 0.0014 |      24 B |
+|                     |          |          |           |           |           |           |        |           |
+| Struct              | .NET 7.0 | .NET 7.0 | 0.0165 ns | 0.0200 ns | 0.0187 ns | 0.0059 ns |      - |         - |
+| Struct              | .NET 8.0 | .NET 8.0 | 0.0096 ns | 0.0147 ns | 0.0130 ns | 0.0032 ns |      - |         - |
+|                     |          |          |           |           |           |           |        |           |
+| ClassWithInterface  | .NET 7.0 | .NET 7.0 | 4.0388 ns | 0.1193 ns | 0.1276 ns | 3.9751 ns | 0.0014 |      24 B |
+| ClassWithInterface  | .NET 8.0 | .NET 8.0 | 3.2790 ns | 0.1087 ns | 0.1787 ns | 3.2270 ns | 0.0014 |      24 B |
+|                     |          |          |           |           |           |           |        |           |
+| StructWithInterface | .NET 7.0 | .NET 7.0 | 4.0907 ns | 0.1203 ns | 0.1338 ns | 4.0992 ns | 0.0014 |      24 B |
+| StructWithInterface | .NET 8.0 | .NET 8.0 | 3.3699 ns | 0.1103 ns | 0.1651 ns | 3.3568 ns | 0.0014 |      24 B |
 ```
-
-
 
 ## 🏁 Results
 
@@ -45,4 +50,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark runs several minutes (1:42min on my workstation)
+## Updates
+
+- 2023/11 - Add .NET 8

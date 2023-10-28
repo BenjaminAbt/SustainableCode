@@ -2,12 +2,15 @@
 
 using System;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using Microsoft.Extensions.Logging;
 
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
+[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net80)]
 public class Benchmark
 {
     private const int _lines = 10;

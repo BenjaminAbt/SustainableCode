@@ -8,18 +8,21 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1645 (21H2)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=6.0.300-preview.22204.3
-  [Host]     : .NET 6.0.4 (6.0.422.16404), X64 RyuJIT
-  DefaultJob : .NET 6.0.4 (6.0.422.16404), X64 RyuJIT
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
 
-|          Method |      Mean |     Error |    StdDev | Ratio | RatioSD | Allocated |
-|---------------- |----------:|----------:|----------:|------:|--------:|----------:|
-|    With_InParam | 0.5647 ns | 0.0139 ns | 0.0123 ns |  3.50 |    0.28 |         - |
-| WithOut_InParam | 0.1610 ns | 0.0124 ns | 0.0116 ns |  1.00 |    0.00 |         - |
-
+| Method          | Runtime  | Mean      | Error     | StdDev    | Ratio |
+|---------------- |--------- |----------:|----------:|----------:|------:|
+| With_InParam    | .NET 7.0 | 0.4264 ns | 0.0247 ns | 0.0219 ns |  2.10 |
+| WithOut_InParam | .NET 7.0 | 0.2051 ns | 0.0163 ns | 0.0153 ns |  1.00 |
+|                 |          |           |           |           |       |
+| With_InParam    | .NET 8.0 | 0.2000 ns | 0.0084 ns | 0.0070 ns |  1.10 |
+| WithOut_InParam | .NET 8.0 | 0.1842 ns | 0.0092 ns | 0.0086 ns |  1.00 |
 ```
 
 
@@ -39,4 +42,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark runs 1:02min on my workstation.
+## Updates
+
+- 2023/11 - Add .NET 8

@@ -1,6 +1,5 @@
 // Made by Benjamin Abt - https://github.com/BenjaminAbt
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
@@ -10,8 +9,8 @@ using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
-[SimpleJob(RuntimeMoniker.Net60)]
 [SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net80)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
 [CategoriesColumn]
 public class Benchmark

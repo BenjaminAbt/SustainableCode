@@ -1,12 +1,17 @@
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
-using NetFabric.Hyperlinq;
+// Made by Benjamin Abt - https://github.com/BenjaminAbt
+
 using System.Collections.Generic;
 using System.Linq;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Running;
+using NetFabric.Hyperlinq;
 
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
+[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net80)]
 public class Benchmark
 {
     private List<int> _data;

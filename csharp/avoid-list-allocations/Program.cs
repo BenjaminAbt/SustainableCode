@@ -8,8 +8,8 @@ using BenchmarkDotNet.Running;
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net60)]
 [SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
+[SimpleJob(RuntimeMoniker.Net80)]
 public class Benchmark
 {
     [Benchmark(Baseline = true)]
@@ -35,6 +35,7 @@ public class ListZeroEntriesClass
 public class ListNullClass
 {
     private List<string>? _myList = null;
+
     public List<string> MyList
     {
         get => _myList ??= new();

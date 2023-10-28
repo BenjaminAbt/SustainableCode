@@ -9,18 +9,21 @@ But what is the impact of using exceptions anyway?
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19044.2728/21H2/November2021Update)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=7.0.300-preview.23122.5
-  [Host]     : .NET 6.0.15 (6.0.1523.11507), X64 RyuJIT AVX2
-  DefaultJob : .NET 6.0.15 (6.0.1523.11507), X64 RyuJIT AVX2
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
 
-|    Method |         Mean |      Error |     StdDev |  Ratio |   Gen0 | Allocated |
-|---------- |-------------:|-----------:|-----------:|-------:|-------:|----------:|
-| Condition |     8.304 ns |  0.1887 ns |  0.1938 ns |   1.00 |      - |         - |
-| Exception | 3,639.148 ns | 63.7049 ns | 56.4728 ns | 440.65 | 0.0076 |     208 B |
-
+| Method    | Job      | Runtime  | Mean         | Error      | StdDev     | Gen0   | Allocated | Alloc Ratio |
+|---------- |--------- |--------- |-------------:|-----------:|-----------:|-------:|----------:|------------:|
+| Condition | .NET 7.0 | .NET 7.0 |    19.482 ns |  0.3892 ns |  0.3641 ns |      - |         - |          NA |
+| Condition | .NET 8.0 | .NET 8.0 |     1.612 ns |  0.0315 ns |  0.0295 ns |      - |         - |          NA |
+|           |          |          |              |            |            |        |           |             |
+| Exception | .NET 7.0 | .NET 7.0 | 3,547.191 ns | 48.9747 ns | 43.4148 ns | 0.0114 |     232 B |          NA |
+| Exception | .NET 8.0 | .NET 8.0 | 2,003.474 ns | 44.8129 ns | 41.9180 ns | 0.0076 |     232 B |          NA |
 ```
 
 ## 🏁 Results
@@ -37,4 +40,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark takes ~0.32mins to run on my machine.
+## Updates
+
+- 2023/11 - Add .NET 8

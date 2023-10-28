@@ -8,22 +8,27 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19044.1415 (21H2)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=6.0.101
-  [Host]     : .NET 6.0.1 (6.0.121.56705), X64 RyuJIT
-  DefaultJob : .NET 6.0.1 (6.0.121.56705), X64 RyuJIT
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
-
-|       Method |      Mean |    Error |    StdDev |  Gen 0 | Allocated |
-|------------- |----------:|---------:|----------:|-------:|----------:|
-|  SmallStruct |  39.16 ns | 0.069 ns |  0.061 ns |      - |         - |
-| MediumStruct |  39.30 ns | 0.254 ns |  0.238 ns |      - |         - |
-|   SmallClass | 215.30 ns | 3.048 ns |  2.994 ns | 0.1433 |   2,400 B |
-|  MediumClass | 487.58 ns | 9.713 ns | 15.959 ns | 0.2389 |   4,000 B |
+| Method       | Job      | Runtime  | Mean      | Error    | StdDev    | Gen0   | Allocated |
+|------------- |--------- |--------- |----------:|---------:|----------:|-------:|----------:|
+| SmallStruct  | .NET 7.0 | .NET 7.0 |  39.14 ns | 0.326 ns |  0.272 ns |      - |         - |
+| SmallStruct  | .NET 8.0 | .NET 8.0 |  39.00 ns | 0.310 ns |  0.259 ns |      - |         - |
+|              |          |          |           |          |           |        |           |
+| MediumStruct | .NET 7.0 | .NET 7.0 |  38.83 ns | 0.290 ns |  0.226 ns |      - |         - |
+| MediumStruct | .NET 8.0 | .NET 8.0 |  38.75 ns | 0.276 ns |  0.245 ns |      - |         - |
+|              |          |          |           |          |           |        |           |
+| SmallClass   | .NET 7.0 | .NET 7.0 | 240.87 ns | 4.264 ns |  6.639 ns | 0.1433 |    2400 B |
+| SmallClass   | .NET 8.0 | .NET 8.0 | 228.85 ns | 4.586 ns | 12.632 ns | 0.1433 |    2400 B |
+|              |          |          |           |          |           |        |           |
+| MediumClass  | .NET 7.0 | .NET 7.0 | 428.15 ns | 8.471 ns | 11.595 ns | 0.2389 |    4000 B |
+| MediumClass  | .NET 8.0 | .NET 8.0 | 425.85 ns | 8.487 ns | 18.270 ns | 0.2389 |    4000 B |
 ```
-
-
 
 ## 🏁 Results
 
@@ -43,4 +48,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark runs several minutes (1:47min on my workstation)
+## Updates
+
+- 2023/11 - Add .NET 8

@@ -5,17 +5,21 @@ A small example of the performance effects of compiled expressions
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19044.2006/21H2/November2021Update)
+BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
 AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK=7.0.100-rc.1.22431.12
-  [Host]     : .NET 6.0.9 (6.0.922.41905), X64 RyuJIT AVX2
-  DefaultJob : .NET 6.0.9 (6.0.922.41905), X64 RyuJIT AVX2
+.NET SDK 8.0.100-rc.2.23502.2
+  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
 
 
-|      Method |          Mean |        Error |       StdDev |    Ratio | RatioSD |   Gen0 |   Gen1 | Allocated | Alloc Ratio |
-|------------ |--------------:|-------------:|-------------:|---------:|--------:|-------:|-------:|----------:|------------:|
-|          Ex | 228,941.16 ns | 4,508.268 ns | 4,823.797 ns | 3,464.82 |  104.18 | 0.7324 | 0.2441 |   14817 B |      154.34 |
-| Ex_Compiled |      66.10 ns |     1.258 ns |     1.346 ns |     1.00 |    0.00 | 0.0057 |      - |      96 B |        1.00 |
+| Method      | Runtime  | Mean          | Error        | StdDev       | Ratio    | Gen0   | Gen1   | Allocated | Alloc Ratio |
+|------------ |--------- |--------------:|-------------:|-------------:|---------:|-------:|-------:|----------:|------------:|
+| Ex          | .NET 7.0 | 234,255.64 ns | 3,023.677 ns | 2,828.350 ns | 3,091.10 | 0.4883 | 0.2441 |   12081 B |      125.84 |
+| Ex_Compiled | .NET 7.0 |      75.84 ns |     0.512 ns |     0.454 ns |     1.00 | 0.0057 |      - |      96 B |        1.00 |
+|             |          |               |              |              |          |        |        |           |             |
+| Ex          | .NET 8.0 | 213,176.49 ns | 1,785.515 ns | 1,582.812 ns | 4,648.00 | 0.4883 | 0.2441 |   12145 B |      126.51 |
+| Ex_Compiled | .NET 8.0 |      45.72 ns |     0.910 ns |     0.973 ns |     1.00 | 0.0057 |      - |      96 B |        1.00 |
 
 ```
 
@@ -34,4 +38,6 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 dotnet run -c Release
 ```
 
-This benchmark takes ~30secs to run on my machine.
+## Updates
+
+- 2023/11 - Add .NET 8
