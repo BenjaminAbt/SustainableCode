@@ -34,6 +34,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 - 🔋 Both struct samples produce no allocations!
 - 🚀 Struct has a better performance over all!
+- There is almost no performance difference between .NET 7 and .NET 8.
 
 ## Remarks
 

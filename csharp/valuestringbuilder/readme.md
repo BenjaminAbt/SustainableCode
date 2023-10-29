@@ -24,6 +24,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 |------------------------ |--------- |---------:|---------:|-------:|----------:|
 | StringCreate_Case       | .NET 7.0 | 0.368 ns | 0.492 ns | 0.0067 |     112 B |
 | StringCreate_Case       | .NET 8.0 | 0.257 ns | 0.241 ns | 0.0067 |     112 B |
+|                         |          |          |          |        |           |
 | StringJoin_Case         | .NET 7.0 | 0.466 ns | 0.572 ns | 0.0062 |     104 B |
 | StringJoin_Case         | .NET 8.0 | 0.465 ns | 0.620 ns | 0.0062 |     104 B |
 |                         |          |          |          |        |           |
@@ -40,6 +41,7 @@ However, due to its base as a struct, it simply cannot be treated as a reference
 
 String.Create remains by far the most performant way to create strings for short strings. The ValueStringBuilder as well as the StringBuilder have advantages for larger strings or certain programming scenarios.
 
+The performance difference has not changed significantly between .NET 7 and .NET 8.
 
 ## ⌨️ Run this sample
 

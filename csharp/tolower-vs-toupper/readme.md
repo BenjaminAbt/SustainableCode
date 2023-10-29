@@ -36,6 +36,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## 🏁 Results
 
 - 🚀 Culuture Invariant-methods are faster, and in most use cases general more correct because invariant casing rules are applied.
+- All tests are about 30% faster in .NET 8 than in .NET 7.
 
 ## Remarks
 

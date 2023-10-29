@@ -3,8 +3,7 @@
 Sustainable applications are becoming increasingly important, because more and more energy consumption is attributable to the operations of a platform or application.
 
 On the user side, this can be seen in the battery life of a laptop or cell phone and as a platform operator, it can be seen in the costs of compute power.
-
-In this repository I use well-known snippets and compare them to sustainable implementations.
+In this repository I use well-known and daily snippets and compare them to sustainable implementations.
 
 It's worth it!
 

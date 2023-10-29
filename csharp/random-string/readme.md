@@ -55,6 +55,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 - 🔋 string.Create and Span<T> are the most efficient way to create (random) strings
 - 🏃‍♀️ The larger the strings, the clearer the performance advantage
 - 🏎️ string.Create has the best performance numbers
+- Across all examples, performance is better in .NET 8. Allocations have remained the same.
 
 ## Remarks
 

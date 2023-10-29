@@ -88,6 +88,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 - Local functions do not make sense everywhere and also not with every hot path method
 - However, for methods with simple decisions and subsequent actions, this method has proven to be very effective.
+- All cases are at least twice, sometimes three times as performant in .NET 8.
 
 ## ⌨️ Run this sample
 

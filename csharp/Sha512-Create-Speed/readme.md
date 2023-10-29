@@ -29,6 +29,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 - 🏎️ Using one instance (with `lock`) is faster than constantly recreating
 - 🔋 Using the new static `HashData` is still the most sustainable
+- There is no performance difference between .NET 7 and .NET 8.
 
 ## Remarks
 

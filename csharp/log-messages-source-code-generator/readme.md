@@ -33,6 +33,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 - 🔋 The String Generator does not generate any allocations for shorter strings
 - ✨ The benefits are comparable to general zero-allocation string generation.
 - 🕳️ This benchmark is very simple. It may be different with real world exceptions and/or more parameters.
+- Performance in .NET 8 has changed slightly, allocations have remained the same.
 
 ## Docs
 

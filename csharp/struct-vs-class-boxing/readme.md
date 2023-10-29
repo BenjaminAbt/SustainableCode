@@ -35,6 +35,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 - 🚀 structs have by far the best efficiency when declared as readonly and used without an interface.
 - 🔋 as soon as an interface is involved, structs have no more advantages due to boxing
+- All tests are about 30% faster in .NET 8 than in .NET 7.
 
 ## Remarks
 

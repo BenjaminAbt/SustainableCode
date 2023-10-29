@@ -46,6 +46,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 - The difference is clear: accessing the `Count` property is much faster - and does not change even if the list contains more entries.
 - Thus, when a [materialized](https://docs.microsoft.com/dotnet/standard/linq/intermediate-materialization?WT.mc_id=DT-MVP-5001507) state exists, the property is always faster (>100x).
 - Comparing .NET 6 to .NET 7 you can see a huge performance jump [Performance Improvements in .NET 7](https://devblogs.microsoft.com/dotnet/performance_improvements_in_net_7/?WT.mc_id=DT-MVP-5001507)
+- Across all cases, .NET 8 is either equally fast or significantly faster
 
 ## Remarks
 

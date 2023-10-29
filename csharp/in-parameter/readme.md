@@ -19,9 +19,9 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 | Method          | Runtime  | Mean      | Error     | StdDev    | Ratio |
 |---------------- |--------- |----------:|----------:|----------:|------:|
 | With_InParam    | .NET 7.0 | 0.4264 ns | 0.0247 ns | 0.0219 ns |  2.10 |
-| WithOut_InParam | .NET 7.0 | 0.2051 ns | 0.0163 ns | 0.0153 ns |  1.00 |
-|                 |          |           |           |           |       |
 | With_InParam    | .NET 8.0 | 0.2000 ns | 0.0084 ns | 0.0070 ns |  1.10 |
+|                 |          |           |           |           |       |
+| WithOut_InParam | .NET 7.0 | 0.2051 ns | 0.0163 ns | 0.0153 ns |  1.00 |
 | WithOut_InParam | .NET 8.0 | 0.1842 ns | 0.0092 ns | 0.0086 ns |  1.00 |
 ```
 
@@ -35,6 +35,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 - With `in` the semantic changes and the value is passed by reference.
 - This leads to the fact that the runtime must create a copy, which costs time.
 - However, there are scenarios, such as large readonly structs, where the in behavior has advantages and should! even be used.
+- In .NET 8, the performance difference is not as huge as in .NET 7.
 
 ## ⌨️ Run this sample
 

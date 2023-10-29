@@ -41,6 +41,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 - 🚀 `UtcNow` is way faster than `Now`, because no timezone allignment is necessary
 - 🚀 `DateTimeOffset` is faster than `DateTime`
+- All cases are faster in .NET 8
 
 ## Remarks
 

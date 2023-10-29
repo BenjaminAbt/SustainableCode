@@ -41,7 +41,7 @@ The results are very descriptive and very clear
 - An implementation with the default behavior of List (4 entries) requires by far the most time, performance, memory
 - The additional parameter for specifying the number of entries optimizes the performance
 - However, the simplification in which the list is only created on demand is by far the best, fastest (~ -70%) and most efficient (~ -67%) solution in all aspects
-
+- With .NET 8, the performance has further improved significantly for the Default, while the allocation remains unchanged
 
 Optimizing list generation is not only incredibly efficient, but thanks to C#'s syntax sugar, it can be implemented without effort. 
 Therefore, there is no reason not to use this.

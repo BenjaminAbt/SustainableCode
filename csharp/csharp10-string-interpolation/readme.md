@@ -20,8 +20,9 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 | Method       | Job      | Runtime  | Mean     | Error    | StdDev   | Gen0   | Allocated |
 |------------- |--------- |--------- |---------:|---------:|---------:|-------:|----------:|
 | String       | .NET 7.0 | .NET 7.0 | 37.46 ns | 0.785 ns | 1.020 ns | 0.0033 |      56 B |
-| StringCreate | .NET 7.0 | .NET 7.0 | 23.99 ns | 0.506 ns | 0.562 ns | 0.0033 |      56 B |
 | String       | .NET 8.0 | .NET 8.0 | 38.10 ns | 0.725 ns | 0.678 ns | 0.0033 |      56 B |
+|              |          |          |          |          |          |        |           |
+| StringCreate | .NET 7.0 | .NET 7.0 | 23.99 ns | 0.506 ns | 0.562 ns | 0.0033 |      56 B |
 | StringCreate | .NET 8.0 | .NET 8.0 | 21.19 ns | 0.431 ns | 0.403 ns | 0.0033 |      56 B |
 ```
 
@@ -29,6 +30,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 - 🔋 Both have the same allocation stats
 - 🚀 The new `string.Create` interpolation feature is ~30% faster!
+- The performance of .NET 7 and .NET 8 has not changed significantly.
 
 ## Remarks
 

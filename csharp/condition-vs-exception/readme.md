@@ -29,6 +29,7 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## 🏁 Results
 
 - 🚀 Controlling logic via exceptions is expensive, inefficient and not smart. Doing away with exceptions is almost 500x faster and more efficient.
+- With .NET 8.0, performance has improved in both cases, but in the case of Condition, .NET 8 is more than 20 times faster than .NET 7.
 
 ## Remarks
 
