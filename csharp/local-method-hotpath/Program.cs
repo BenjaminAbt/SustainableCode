@@ -15,26 +15,32 @@ public class Benchmark
     [Params(10, 100, 1000)]
     public int Iterations { get; set; }
 
-    private TestClass _testClass = new();
+    private readonly TestClass _testClass = new();
 
     [Benchmark]
     public void WithoutLocal()
     {
-        for (int i = 0; i < Iterations; i++) _testClass.AnyHotPathMethod();
+        for (int i = 0; i < Iterations; i++)
+        {
+            _testClass.AnyHotPathMethod();
+        }
     }
 
     [Benchmark]
     public void WithLocal()
     {
-        for (int i = 0; i < Iterations; i++) _testClass.AnyHotPathMethodWithFunction();
+        for (int i = 0; i < Iterations; i++)
+        {
+            _testClass.AnyHotPathMethodWithFunction();
+        }
     }
 }
 
 public class TestClass
 {
     private readonly StringBuilder _sb = new();
-    private bool _b1;
-    private bool _b2;
+    private readonly bool _b1;
+    private readonly bool _b2;
 
 
     public void AnyHotPathMethod()

@@ -24,12 +24,12 @@ public class Benchmark
 
 public class DefaultListClass
 {
-    public List<string> MyList { get; set; } = new(); // 4 entries by default
+    public List<string> MyList { get; set; } = []; // 4 entries by default
 }
 
 public class ListZeroEntriesClass
 {
-    public List<string> MyList { get; set; } = new(0);
+    public List<string> MyList { get; set; } = [];
 }
 
 public class ListNullClass
@@ -38,7 +38,7 @@ public class ListNullClass
 
     public List<string> MyList
     {
-        get => _myList ??= new();
+        get => _myList ??= [];
         set => _myList = value;
     }
 }
