@@ -57,6 +57,8 @@ Code samples and snippets based on .NET
 
 [.NET List ConvertAll vs Select-ToList](csharp/list-convertall-vs-select-tolist)
 
+[.NET String Cleanup](csharp/string-cleanup)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.

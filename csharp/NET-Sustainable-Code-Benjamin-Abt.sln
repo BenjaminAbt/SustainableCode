@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31911.260
@@ -57,6 +56,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-Linq-Any-vs-Count", "linq-any-vs-count\NET-Linq-Any-vs-Count.csproj", "{AF34E2F3-0461-4EFB-A64E-F737A6065B94}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-ConvertAll-vs-SelectToList", "list-convertall-vs-select-tolist\NET-List-ConvertAll-vs-SelectToList.csproj", "{DB12BE0F-BAD5-494B-8472-64CD61FB6C72}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-String-Cleanup", "string-cleanup\NET-String-Cleanup.csproj", "{EC39EDB4-0B3A-4CA6-AE78-0D60F8CB4726}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -164,6 +165,10 @@ Global
 		{DB12BE0F-BAD5-494B-8472-64CD61FB6C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB12BE0F-BAD5-494B-8472-64CD61FB6C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB12BE0F-BAD5-494B-8472-64CD61FB6C72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC39EDB4-0B3A-4CA6-AE78-0D60F8CB4726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC39EDB4-0B3A-4CA6-AE78-0D60F8CB4726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC39EDB4-0B3A-4CA6-AE78-0D60F8CB4726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC39EDB4-0B3A-4CA6-AE78-0D60F8CB4726}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
