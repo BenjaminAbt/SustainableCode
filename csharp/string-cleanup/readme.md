@@ -13,12 +13,12 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 Job=.NET 8.0  Runtime=.NET 8.0
 
-| Method                 | Mean       | Error    | StdDev   | Ratio | RatioSD | Gen0   | Gen1   | Allocated | Alloc Ratio |
-|----------------------- |-----------:|---------:|---------:|------:|--------:|-------:|-------:|----------:|------------:|
-| StringBuilder_Pool     |   708.9 ns |  6.48 ns |  5.74 ns |  1.00 |    0.00 | 0.0744 |      - |   1.22 KB |        1.00 |
-| StringBuilder_Instance |   811.4 ns | 15.80 ns | 19.41 ns |  1.15 |    0.03 | 0.2270 | 0.0019 |   3.71 KB |        3.04 |
-| Linq                   | 1,808.9 ns | 20.57 ns | 19.24 ns |  2.55 |    0.03 | 0.0782 |      - |    1.3 KB |        1.07 |
-| Span                   |   403.8 ns |  6.68 ns |  6.25 ns |  0.57 |    0.01 | 0.0744 |      - |   1.22 KB |        1.00 |
+| Method                 | Mean       | Ratio || Gen0   | Gen1   | Allocated | Alloc Ratio |
+|----------------------- |-----------:|------:||-------:|-------:|----------:|------------:|
+| StringBuilder_Pool     |   708.9 ns |  1.00 || 0.0744 |      - |   1.22 KB |        1.00 |
+| StringBuilder_Instance |   811.4 ns |  1.15 || 0.2270 | 0.0019 |   3.71 KB |        3.04 |
+| Linq                   | 1,808.9 ns |  2.55 || 0.0782 |      - |    1.3 KB |        1.07 |
+| Span                   |   403.8 ns |  0.57 || 0.0744 |      - |   1.22 KB |        1.00 |
 ```
 
 ## 🏁 Results
