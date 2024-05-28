@@ -2,17 +2,30 @@
 
 using System;
 using System.Buffers;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
-using BenchmarkDotNet.Running;
 using Microsoft.Extensions.ObjectPool;
 
-BenchmarkRunner.Run<Benchmark>();
+#if DEBUG
+Benchmark bench = new();
+Console.WriteLine(bench.StringBuilder_Pool());
+Console.WriteLine(bench.StringBuilder_Instance());
+Console.WriteLine(bench.Linq());
+Console.WriteLine(bench.Span());
+Console.WriteLine(bench.Span2());
+Console.WriteLine(bench.Span2Unsafe());
+#else
+BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark>();
+#endif
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90)]
 public class Benchmark
 {
     public const string Input = @"""
@@ -26,7 +39,7 @@ public class Benchmark
         Hello\u0001World Hello\u0001World Hello\u0001World Hello\u0001World
         """;
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     public string StringBuilder_Pool() => Cleanups.UsingStringBuilderPool(Input);
 
     [Benchmark]
@@ -36,7 +49,16 @@ public class Benchmark
     public string Linq() => Cleanups.UsingLinq(Input);
 
     [Benchmark]
-    public ReadOnlySpan<char> Span() => Cleanups.UsingSpan(Input);
+    public string Span() => Cleanups.UsingSpan(Input);
+
+    [Benchmark(Baseline = true)]
+    public string Span1() => Cleanups.UseSpan1(Input);
+
+    [Benchmark]
+    public string Span2() => Cleanups.UseSpan2(Input);
+
+    [Benchmark]
+    public string Span2Unsafe() => Cleanups.UseSpan2Unsafe(Input);
 }
 
 public static class Cleanups
@@ -81,7 +103,7 @@ public static class Cleanups
     public static string UsingLinq(string source)
         => string.Concat(source.Where(c => char.IsControl(c) is false));
 
-    public static ReadOnlySpan<char> UsingSpan(string source)
+    public static string UsingSpan(string source)
     {
         int length = source.Length;
         char[]? rentedFromPool = null;
@@ -112,8 +134,120 @@ public static class Cleanups
 
         return data;
     }
-}
 
+    [SkipLocalsInit]
+    public static string UseSpan1(ReadOnlySpan<char> source)
+    {
+        int len = source.Length;
+        char[]? rentedFromPool = null;
+
+        Span<char> buffer = len <= 512
+            ? stackalloc char[512]
+            : rentedFromPool = ArrayPool<char>.Shared.Rent(len);
+
+        int idx = 0;
+        foreach (char c in source)
+        {
+            if (!char.IsControl(c))
+            {
+                buffer[idx++] = c;
+            }
+        }
+
+        buffer = buffer.Slice(0, idx);
+
+        if (rentedFromPool is not null)
+        {
+            buffer.Clear();
+            ArrayPool<char>.Shared.Return(rentedFromPool);
+        }
+
+        return buffer.ToString();
+    }
+
+    [SkipLocalsInit]
+    public static string UseSpan2(ReadOnlySpan<char> source)
+    {
+        if (source.Length <= 512)
+        {
+            (string result, _) = Core(source, stackalloc char[512]);
+            return result;
+        }
+
+        return UsePool(source);
+
+        static (string, int) Core(ReadOnlySpan<char> source, Span<char> buffer)
+        {
+            int idx = 0;
+            foreach (char c in source)
+            {
+                if (!char.IsControl(c))
+                {
+                    buffer[idx++] = c;
+                }
+            }
+
+            string result = buffer.Slice(0, idx).ToString();
+            return (result, idx);
+        }
+
+        static string UsePool(ReadOnlySpan<char> source)
+        {
+            char[] rentedFromPool = ArrayPool<char>.Shared.Rent(source.Length);
+
+            (string result, int length) = Core(source, rentedFromPool);
+
+            rentedFromPool.AsSpan(0, length).Clear();
+            ArrayPool<char>.Shared.Return(rentedFromPool);
+
+            return result;
+        }
+    }
+
+    [SkipLocalsInit]
+    public static string UseSpan2Unsafe(ReadOnlySpan<char> source)
+    {
+        if (source.Length <= 512)
+        {
+            (string result, _) = Core(source, stackalloc char[512]);
+            return result;
+        }
+
+        return UsePool(source);
+
+        static (string, int) Core(ReadOnlySpan<char> source, Span<char> buffer)
+        {
+            Debug.Assert(buffer.Length >= source.Length);
+
+            ref char ptr = ref MemoryMarshal.GetReference(buffer);
+            int idx = 0;
+
+            foreach (char c in source)
+            {
+                if (!char.IsControl(c))
+                {
+                    Unsafe.Add(ref ptr, (uint)idx) = c;
+                    idx++;
+                }
+            }
+
+            string result = buffer.Slice(0, idx).ToString();
+            return (result, idx);
+        }
+
+        static string UsePool(ReadOnlySpan<char> source)
+        {
+            char[] rentedFromPool = ArrayPool<char>.Shared.Rent(source.Length);
+
+            (string result, int length) = Core(source, rentedFromPool);
+
+            rentedFromPool.AsSpan(0, length).Clear();
+            ArrayPool<char>.Shared.Return(rentedFromPool);
+
+            return result;
+        }
+    }
+}
 
 public static class StringBuilderPool
 {
