@@ -13,17 +13,23 @@ BenchmarkRunner.Run<Benchmark>();
 public class Benchmark
 {
     [Benchmark(Baseline = true)]
-    public List<int> New_Ctor() => new();
+    public List<int> List_Ctor() => new();
 
     [Benchmark]
-    public List<int> New_0() => new(0);
+    public List<int> List_Ctor_0() => new(0);
 
     [Benchmark]
-    public List<int> New() => [];
+    public List<int> List_Recommended() => [];
 
     [Benchmark]
     public int[] Array_Empty() => Array.Empty<int>();
 
     [Benchmark]
-    public int[] Array_Empty_2() => [];
+    public int[] Array_Recommended() => [];
+
+    [Benchmark]
+    public HashSet<int> HashSet_Ctor() => new();
+
+    [Benchmark]
+    public HashSet<int> HashSet_Recommended() => [];
 }

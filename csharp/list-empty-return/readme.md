@@ -13,17 +13,19 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 
 | Method      | Mean      | Ratio | Gen0   | Allocated |
 |------------ |----------:|------:|-------:|----------:|
-| New         | 3.1534 ns |  1.00 | 0.0019 |      32 B |
-| New(0)      | 3.0940 ns |  0.99 | 0.0019 |      32 B |
-| List []     | 2.9298 ns |  0.93 | 0.0019 |      32 B |
-| Array.Empty | 0.4359 ns |  0.13 |      - |         - |
-| Array []    | 0.4417 ns |  0.14 |      - |         - |
+| List()      | 2.7975 ns |  1.00 | 0.0019 |      32 B |
+| List(0)     | 2.9224 ns |  1.04 | 0.0019 |      32 B |
+| List []     | 2.7643 ns |  0.99 | 0.0019 |      32 B |
+| Array.Empty | 0.4912 ns |  0.18 |      - |         - |
+| Array []    | 0.4835 ns |  0.18 |      - |         - |
+| HashSet()   | 4.0250 ns |  1.48 | 0.0038 |      64 B |
+| HashSet []  | 4.0798 ns |  1.46 | 0.0038 |      64 B |
 ```
 
 ## 🏁 Remarks
 
-- Array.Empty is by far the most efficient and fastest variant - but is the only method in this example that also returns an array
-- All other variants are almost identical, whereby `[]` corresponds to the latest and currently recommended notation.
+- The new notation `[]` is an alias for all collections in order to create the collection in the most efficient way
+- The return of `Array.Empty` is by far the fastest and most efficient way; the array is only created once in the background and then statically retained. This is not possible with other collections.
 
 ## Conclusion
 
