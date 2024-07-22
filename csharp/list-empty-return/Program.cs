@@ -23,4 +23,7 @@ public class Benchmark
 
     [Benchmark]
     public int[] Array_Empty() => Array.Empty<int>();
+
+    [Benchmark]
+    public int[] Array_Empty_2() => [];
 }
