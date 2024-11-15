@@ -34,7 +34,7 @@ public class ListZeroEntriesClass
 
 public class ListNullClass
 {
-    private List<string>? _myList = null;
+    private List<string> _myList;
 
     public List<string> MyList
     {

@@ -106,7 +106,7 @@ public static class Cleanups
     public static string UsingSpan(string source)
     {
         int length = source.Length;
-        char[]? rentedFromPool = null;
+        char[] rentedFromPool = null;
 
         // allocate
         Span<char> buffer = length > 512 ?
@@ -139,7 +139,7 @@ public static class Cleanups
     public static string UseSpan1(ReadOnlySpan<char> source)
     {
         int len = source.Length;
-        char[]? rentedFromPool = null;
+        char[] rentedFromPool = null;
 
         Span<char> buffer = len <= 512
             ? stackalloc char[512]
