@@ -17,10 +17,10 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 | Method      | Runtime  | Mean          | StdDev       | Ratio    | RatioSD | Gen0   | Gen1   | Allocated | Alloc Ratio |
 |------------ |--------- |--------------:|-------------:|---------:|--------:|-------:|-------:|----------:|------------:|
 | Ex          | .NET 7.0 | 162,346.11 ns | 1,559.010 ns | 5,838.03 |   56.20 | 0.4883 | 0.2441 |   12081 B |      125.84 |
-| Ex_Compiled | .NET 7.0 |      42.31 ns |     0.098 ns |     1.52 |    0.01 | 0.0057 |      - |      96 B |        1.00 |
 | Ex          | .NET 8.0 | 145,292.36 ns |   766.132 ns | 5,224.77 |   29.67 | 0.4883 | 0.2441 |   12145 B |      126.51 |
-| Ex_Compiled | .NET 8.0 |      28.94 ns |     0.140 ns |     1.04 |    0.01 | 0.0057 |      - |      96 B |        1.00 |
 | Ex          | .NET 9.0 | 137,245.31 ns |   733.243 ns | 4,935.40 |   28.33 | 0.4883 | 0.2441 |   12113 B |      126.18 |
+| Ex_Compiled | .NET 7.0 |      42.31 ns |     0.098 ns |     1.52 |    0.01 | 0.0057 |      - |      96 B |        1.00 |
+| Ex_Compiled | .NET 8.0 |      28.94 ns |     0.140 ns |     1.04 |    0.01 | 0.0057 |      - |      96 B |        1.00 |
 | Ex_Compiled | .NET 9.0 |      27.81 ns |     0.072 ns |     1.00 |    0.00 | 0.0057 |      - |      96 B |        1.00 |
 
 ```
@@ -32,8 +32,8 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 ## Remarks
 
 - Compiling an expression costs time itself. Therefore, this is not advisable for all cases.
-- Furthermore, [Compile()](https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1.compile?view=net-6.0&WT.mc_id=DT-MVP-5001507) is not very fast, but there is a workaround for this with [FastExpressionCompiler](https://github.com/dadhi/FastExpressionCompiler).
-- Compiled bits in .NET 8 are tremendously much faster than in .NET 7
+- Furthermore, [Compile()](https://learn.microsoft.com/dotnet/api/system.linq.expressions.expression-1.compile?WT.mc_id=DT-MVP-5001507) is not very fast, but there is a workaround for this with [FastExpressionCompiler](https://github.com/dadhi/FastExpressionCompiler).
+- Compiled bits in .NET 8 are way faster than in .NET 7
 
 ## ⌨️ Run this sample
 

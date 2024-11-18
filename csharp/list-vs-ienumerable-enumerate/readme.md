@@ -4,8 +4,8 @@ This code example shows the different behavior of runs of IEnumerable and List.
 
 > This example has no claim to how lists are handled in the very very best case, but **how they are currently handled in everyday life**.
 
-- [List - msdocs](https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1?view=net-6.0&WT.mc_id=DT-MVP-5001507)
-- [IEnumeranle - msdocs](https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1?view=net-6.0&WT.mc_id=DT-MVP-5001507)
+- [List - msdocs](https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1?WT.mc_id=DT-MVP-5001507)
+- [IEnumeranle - msdocs](https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1?WT.mc_id=DT-MVP-5001507)
 
 ## Background of this test:
 There are always the discussions whether to use List or IEnumerable - especially for returns.
@@ -64,6 +64,7 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 - By far the fastest way is to treat an already [materialized](https://docs.microsoft.com/dotnet/standard/linq/intermediate-materialization?WT.mc_id=DT-MVP-5001507) `List`.
 - The slowest way is to treat a `List` as IEnumerable, so that the enumerator has to be run again.
 - While List behavior has changed virtually nothing in .NET 8, all IEnumerable cases are significantly faster in .NET 8 than in .NET 7.
+- Performance has been improved even further with .NET 9.
 
 ## Remarks
 

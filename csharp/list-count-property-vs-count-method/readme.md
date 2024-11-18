@@ -5,75 +5,30 @@ These snippets show the basic behavior of [Count()](https://docs.microsoft.com/d
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
-
-
-| Method                 | Job      | Runtime  | Categories | Count | Mean      | Error     | StdDev    | Median    | Ratio  | RatioSD |
-|----------------------- |--------- |--------- |----------- |------ |----------:|----------:|----------:|----------:|-------:|--------:|
-| HashSet_Count_Property | .NET 7.0 | .NET 7.0 | HashSet    | 1000  | 0.0137 ns | 0.0158 ns | 0.0148 ns | 0.0111 ns |      ? |       ? |
-| HashSet_Count_Method   | .NET 7.0 | .NET 7.0 | HashSet    | 1000  | 2.0003 ns | 0.0583 ns | 0.0545 ns | 1.9817 ns |      ? |       ? |
-|                        |          |          |            |       |           |           |           |           |        |         |
-| HashSet_Count_Property | .NET 8.0 | .NET 8.0 | HashSet    | 1000  | 0.0240 ns | 0.0172 ns | 0.0161 ns | 0.0251 ns |   1.00 |    0.00 |
-| HashSet_Count_Method   | .NET 8.0 | .NET 8.0 | HashSet    | 1000  | 1.6695 ns | 0.0259 ns | 0.0243 ns | 1.6611 ns | 109.91 |   70.79 |
-|                        |          |          |            |       |           |           |           |           |        |         |
-| HashSet_Count_Property | .NET 7.0 | .NET 7.0 | HashSet    | 10000 | 0.0282 ns | 0.0184 ns | 0.0173 ns | 0.0195 ns |   1.00 |    0.00 |
-| HashSet_Count_Method   | .NET 7.0 | .NET 7.0 | HashSet    | 10000 | 2.2915 ns | 0.0672 ns | 0.0774 ns | 2.3251 ns | 109.94 |   59.14 |
-|                        |          |          |            |       |           |           |           |           |        |         |
-| HashSet_Count_Property | .NET 8.0 | .NET 8.0 | HashSet    | 10000 | 0.0342 ns | 0.0211 ns | 0.0197 ns | 0.0305 ns |   1.00 |    0.00 |
-| HashSet_Count_Method   | .NET 8.0 | .NET 8.0 | HashSet    | 10000 | 1.6984 ns | 0.0415 ns | 0.0388 ns | 1.7006 ns |  71.45 |   47.24 |
-|                        |          |          |            |       |           |           |           |           |        |         |
-| List_Count_Property    | .NET 7.0 | .NET 7.0 | List       | 1000  | 0.0012 ns | 0.0027 ns | 0.0021 ns | 0.0000 ns |      ? |       ? |
-| List_Count_Method      | .NET 7.0 | .NET 7.0 | List       | 1000  | 2.1422 ns | 0.0638 ns | 0.0597 ns | 2.1150 ns |      ? |       ? |
-|                        |          |          |            |       |           |           |           |           |        |         |
-| List_Count_Property    | .NET 8.0 | .NET 8.0 | List       | 1000  | 0.0001 ns | 0.0005 ns | 0.0005 ns | 0.0000 ns |      ? |       ? |
-| List_Count_Method      | .NET 8.0 | .NET 8.0 | List       | 1000  | 1.7115 ns | 0.0502 ns | 0.0469 ns | 1.7149 ns |      ? |       ? |
-|                        |          |          |            |       |           |           |           |           |        |         |
-| List_Count_Property    | .NET 7.0 | .NET 7.0 | List       | 10000 | 0.0397 ns | 0.0202 ns | 0.0179 ns | 0.0457 ns |   1.00 |    0.00 |
-| List_Count_Method      | .NET 7.0 | .NET 7.0 | List       | 10000 | 2.2953 ns | 0.0404 ns | 0.0378 ns | 2.3143 ns |  78.86 |   53.57 |
-|                        |          |          |            |       |           |           |           |           |        |         |
-| List_Count_Property    | .NET 8.0 | .NET 8.0 | List       | 10000 | 0.0398 ns | 0.0203 ns | 0.0190 ns | 0.0441 ns |   1.00 |    0.00 |
-| List_Count_Method      | .NET 8.0 | .NET 8.0 | List       | 10000 | 1.6535 ns | 0.0313 ns | 0.0278 ns | 1.6401 ns |  61.39 |   45.47 |
-
-
-BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
-AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 9.0.100
-  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
-  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
-  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
-
-
-| Method                 | Runtime  | Mean      | StdDev    |
-|----------------------- |--------- |----------:|----------:|
-| HashSet_Count_Method   | .NET 7.0 | 1.3368 ns | 0.0084 ns |
-| HashSet_Count_Method   | .NET 8.0 | 1.2247 ns | 0.0027 ns |
-| HashSet_Count_Method   | .NET 9.0 | 0.3772 ns | 0.0043 ns |
-|                        |          |           |           |
-| HashSet_Count_Property | .NET 7.0 | 0.0057 ns | 0.0014 ns |
-| HashSet_Count_Property | .NET 8.0 | 0.0034 ns | 0.0040 ns |
-| HashSet_Count_Property | .NET 9.0 | 0.0007 ns | 0.0015 ns |
-|                        |          |           |           |
-| List_Count_Method      | .NET 7.0 | 1.3489 ns | 0.0104 ns |
-| List_Count_Method      | .NET 8.0 | 1.2332 ns | 0.0093 ns |
-| List_Count_Method      | .NET 9.0 | 0.3716 ns | 0.0017 ns |
-|                        |          |           |           |
-| List_Count_Property    | .NET 7.0 | 0.0037 ns | 0.0017 ns |
-| List_Count_Property    | .NET 8.0 | 0.0018 ns | 0.0007 ns |
-| List_Count_Property    | .NET 9.0 | 0.0008 ns | 0.0017 ns |
+| Method                 | Runtime  | Count | Mean      | Error     | StdDev    | Median    |
+|----------------------- |--------- |------ |----------:|----------:|----------:|----------:|
+| HashSet_Count_Property | .NET 7.0 | 1000  | 0.0063 ns | 0.0014 ns | 0.0012 ns | 0.0061 ns |
+| HashSet_Count_Property | .NET 8.0 | 1000  | 0.0065 ns | 0.0004 ns | 0.0003 ns | 0.0064 ns |
+| HashSet_Count_Property | .NET 9.0 | 1000  | 0.0000 ns | 0.0000 ns | 0.0000 ns | 0.0000 ns |
+|                        |          |       |           |           |           |           |
+| HashSet_Count_Method   | .NET 7.0 | 1000  | 1.3498 ns | 0.0152 ns | 0.0142 ns | 1.3488 ns |
+| HashSet_Count_Method   | .NET 8.0 | 1000  | 1.2249 ns | 0.0090 ns | 0.0084 ns | 1.2222 ns |
+| HashSet_Count_Method   | .NET 9.0 | 1000  | 0.3804 ns | 0.0023 ns | 0.0020 ns | 0.3797 ns |
+|                        |          |       |           |           |           |           |
+| List_Count_Property    | .NET 7.0 | 1000  | 0.0045 ns | 0.0030 ns | 0.0025 ns | 0.0042 ns |
+| List_Count_Property    | .NET 8.0 | 1000  | 0.0018 ns | 0.0032 ns | 0.0027 ns | 0.0008 ns |
+| List_Count_Property    | .NET 9.0 | 1000  | 0.0000 ns | 0.0000 ns | 0.0000 ns | 0.0000 ns |
+|                        |          |       |           |           |           |           |
+| List_Count_Method      | .NET 7.0 | 1000  | 1.3579 ns | 0.0107 ns | 0.0095 ns | 1.3559 ns |
+| List_Count_Method      | .NET 8.0 | 1000  | 1.2283 ns | 0.0059 ns | 0.0052 ns | 1.2295 ns |
+| List_Count_Method      | .NET 9.0 | 1000  | 0.3772 ns | 0.0026 ns | 0.0021 ns | 0.3772 ns |
 ```
 
 ## 🏁 Results
 
 - The difference is clear: accessing the `Count` property is much faster - and does not change even if the list contains more entries.
 - Thus, when a [materialized](https://docs.microsoft.com/dotnet/standard/linq/intermediate-materialization?WT.mc_id=DT-MVP-5001507) state exists, the property is always faster (>100x).
-- Comparing .NET 6 to .NET 7 you can see a huge performance jump [Performance Improvements in .NET 7](https://devblogs.microsoft.com/dotnet/performance_improvements_in_net_7/?WT.mc_id=DT-MVP-5001507)
-- Across all cases, .NET 8 is either equally fast or significantly faster
+- Across all cases, .NET 9 is either equally fast or significantly faster
 
 ## Remarks
 

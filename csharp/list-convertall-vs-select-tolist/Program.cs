@@ -13,7 +13,7 @@ BenchmarkRunner.Run<Benchmark>();
 [SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90, baseline: true)]
-[HideColumns(Column.Job, Column.Median)]
+[HideColumns(Column.Job)]
 public class Benchmark
 {
     // Prepare
@@ -29,12 +29,13 @@ public class Benchmark
     }
 
     // Benchmarks
-    [Benchmark(Baseline = true)]
-    public List<DemoContainer> SelectToList() => _list.Select(Map).ToList();
-
+    [Benchmark]
+    public List<DemoContainer> SelectToList()
+        => _list.Select(Map).ToList();
 
     [Benchmark]
-    public List<DemoContainer> ConvertAll() => _list.ConvertAll(Map);
+    public List<DemoContainer> ConvertAll()
+        => _list.ConvertAll(Map);
 
     // Map
     public readonly record struct DemoContainer(int Data);

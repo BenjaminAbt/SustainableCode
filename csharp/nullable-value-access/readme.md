@@ -54,7 +54,7 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 
 - 🔋 Pattern Matching has a similar performance as a classic reference match.
 - 🏎️ But when dealing with (nullable) structs, a significant loss of performance is measurable, sometimes by a factor of 250.
-- All cases in .NET 8 have continued to improve significantly in terms of performance.
+- All cases in .NET 8 and .NET 9 have continued to improve significantly in terms of performance.
 
 
 ## Remarks

@@ -44,8 +44,7 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 
 ## Remarks
 
-- Using `List` is by far the most inefficient way, because under the hood an array is created, which in turn has 4 elements by default.
-- Creating an empty array is better, but it still creates an object unnecessarily and thus requires an allocation.
+- If you need an empty collection, it is best to work with `Array.Empty` or `Enumerable.Empty`.
 - You can use `Array.Empty` for all array-based collections (like `ICollection`), which has the same static object implementation like `Enumerable.Empty`.
 - All use cases became significantly faster in .NET 8, with the `List` case also seeing a reduction in allocation.
 

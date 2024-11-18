@@ -23,29 +23,30 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
   .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
   .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
-| Method          | Runtime  | Mean     | Error     | StdDev    | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|---------------- |--------- |---------:|----------:|----------:|------:|--------:|-------:|----------:|------------:|
-| DefaultList     | .NET 7.0 | 4.554 ns | 0.0764 ns | 0.0714 ns |  1.01 |    0.02 | 0.0033 |      56 B |        1.00 |
-| ListZeroEntries | .NET 7.0 | 4.527 ns | 0.0570 ns | 0.0533 ns |  1.00 |    0.02 | 0.0033 |      56 B |        1.00 |
-| ListNull        | .NET 7.0 | 1.638 ns | 0.0369 ns | 0.0345 ns |  0.36 |    0.01 | 0.0014 |      24 B |        0.43 |
-|                 |          |          |           |           |       |         |        |           |             |
-| DefaultList     | .NET 8.0 | 4.484 ns | 0.0569 ns | 0.0533 ns |  0.99 |    0.02 | 0.0033 |      56 B |        1.00 |
-| ListZeroEntries | .NET 8.0 | 4.491 ns | 0.0747 ns | 0.0699 ns |  0.99 |    0.02 | 0.0033 |      56 B |        1.00 |
-| ListNull        | .NET 8.0 | 1.575 ns | 0.0137 ns | 0.0122 ns |  0.35 |    0.01 | 0.0014 |      24 B |        0.43 |
-|                 |          |          |           |           |       |         |        |           |             |
-| DefaultList     | .NET 9.0 | 4.521 ns | 0.0723 ns | 0.0677 ns |  1.00 |    0.02 | 0.0033 |      56 B |        1.00 |
-| ListZeroEntries | .NET 9.0 | 4.517 ns | 0.0426 ns | 0.0398 ns |  1.00 |    0.02 | 0.0033 |      56 B |        1.00 |
-| ListNull        | .NET 9.0 | 1.643 ns | 0.0630 ns | 0.0590 ns |  0.36 |    0.01 | 0.0014 |      24 B |        0.43 |
+
+| Method          | Runtime  | Mean     | Error     | StdDev    | Ratio | Allocated |
+|---------------- |--------- |---------:|----------:|----------:|------:|----------:|
+| DefaultList     | .NET 7.0 | 4.562 ns | 0.0575 ns | 0.0538 ns |  1.01 |      56 B |
+| DefaultList     | .NET 8.0 | 4.585 ns | 0.0482 ns | 0.0451 ns |  1.01 |      56 B |
+| DefaultList     | .NET 9.0 | 4.533 ns | 0.0430 ns | 0.0403 ns |  1.00 |      56 B |
+|                 |          |          |           |           |       |           |
+| ListZeroEntries | .NET 7.0 | 4.611 ns | 0.0739 ns | 0.0691 ns |  0.99 |      56 B |
+| ListZeroEntries | .NET 8.0 | 4.484 ns | 0.0369 ns | 0.0345 ns |  0.97 |      56 B |
+| ListZeroEntries | .NET 9.0 | 4.643 ns | 0.0443 ns | 0.0393 ns |  1.00 |      56 B |
+|                 |          |          |           |           |       |           |
+| ListNull        | .NET 7.0 | 1.683 ns | 0.0139 ns | 0.0123 ns |  1.00 |      24 B |
+| ListNull        | .NET 8.0 | 1.650 ns | 0.0170 ns | 0.0159 ns |  0.98 |      24 B |
+| ListNull        | .NET 9.0 | 1.681 ns | 0.0447 ns | 0.0396 ns |  1.00 |      24 B |
 ```
 
 ## 🏁 Results
 
 The results are very descriptive and very clear
 
-- An implementation with the default behavior of List (4 entries) requires by far the most time, performance, memory
-- The additional parameter for specifying the number of entries optimizes the performance
-- However, the simplification in which the list is only created on demand is by far the best, fastest (~ -70%) and most efficient (~ -67%) solution in all aspects
-- With .NET 8, the performance has further improved significantly for the Default, while the allocation remains unchanged
+- It is no surprise that the lazy implementation generates less allocation.
+- Therefore, it is also no surprise that in the median the lazy implementation is more performant.
+- There are no real differences between `List()` and `List(0)` anymore.
+- There are no measurable differences between the various runtime versions.
 
 Optimizing list generation is not only incredibly efficient, but thanks to C#'s syntax sugar, it can be implemented without effort.
 Therefore, there is no reason not to use this.

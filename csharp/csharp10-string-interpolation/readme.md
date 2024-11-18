@@ -31,9 +31,9 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 
 ## 🏁 Results
 
-- 🔋 Both have the same allocation stats
-- 🚀 The new `string.Create` interpolation feature is ~30% faster!
-- The performance of .NET 7 and .NET 8 has not changed significantly.
+- 🔋 Both have the same allocation stats.
+- 🚀 The new `string.Create` interpolation feature is way faster.
+- With .NET 9 we got a performance boost.
 
 ## Remarks
 

@@ -12,7 +12,7 @@ BenchmarkRunner.Run<Benchmark>();
 [SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90, baseline: true)]
-[HideColumns(Column.Job, Column.Median)]
+[HideColumns(Column.Job)]
 public class Benchmark
 {
     private const string _test = "this-is-no-guid";

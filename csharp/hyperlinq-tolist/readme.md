@@ -36,12 +36,8 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 
 ## ℹ Remarks
 
-I already use HyperLinq in many of my projects and have been able to massively reduce memory consumption while increasing performance.
-This has led to us using smaller Azure instances in a variety of projects and services, reducing costs and CO2 consumption.
-
-However, as in any bechnmark, this must be applied reasonably to the individual case in order to achieve improvement.
-
-While allocations have not improved in .NET 8, performance has improved significantly. In some cases twice as fast.
+- Performance has been greatly improved with .NET 9. The comparison between .NET 9 and HyperLinq with .NET 8 shows that the .NET 9 system is now faster.
+- The development of HyperLinq seems to be inactive and does not exist for .NET 9 so far.
 
 ## ⌨️ Run this sample
 

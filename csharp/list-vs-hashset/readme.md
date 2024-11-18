@@ -63,6 +63,7 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 
 - 🚀 HashSet is a collection that ensures that each element exists only once and thus no manual distinct has to be made. However, this is bought by a performance loss and allocations when inserting the elements!
 - The performance benefits of .NET 8 are almost twice as high as in .NET 7.
+- Performance has been improved even further with .NET 9.
 
 ## Remarks
 

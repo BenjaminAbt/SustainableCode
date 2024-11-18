@@ -28,7 +28,7 @@ BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark>();
 [SimpleJob(RuntimeMoniker.Net70)]
 [SimpleJob(RuntimeMoniker.Net80)]
 [SimpleJob(RuntimeMoniker.Net90, baseline: true)]
-[HideColumns(Column.Job, Column.Median)]
+[HideColumns(Column.Job)]
 public class Benchmark
 {
     public const string Input = @"""

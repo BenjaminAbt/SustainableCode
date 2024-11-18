@@ -21,17 +21,18 @@ AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
 | Method    | Runtime  | Mean         | Error     | StdDev    | Ratio    | RatioSD | Gen0   | Allocated |
 |---------- |--------- |-------------:|----------:|----------:|---------:|--------:|-------:|----------:|
 | Condition | .NET 7.0 |    11.495 ns | 0.0733 ns | 0.0612 ns |    10.30 |    0.06 |      - |         - |
-| Exception | .NET 7.0 | 2,336.653 ns | 9.1249 ns | 8.5355 ns | 2,092.87 |    9.28 | 0.0114 |     232 B |
 | Condition | .NET 8.0 |     1.299 ns | 0.0041 ns | 0.0034 ns |     1.16 |    0.00 |      - |         - |
-| Exception | .NET 8.0 | 2,303.988 ns | 2.6537 ns | 2.0719 ns | 2,063.61 |    5.80 | 0.0114 |     232 B |
 | Condition | .NET 9.0 |     1.116 ns | 0.0035 ns | 0.0031 ns |     1.00 |    0.00 |      - |         - |
+| Exception | .NET 7.0 | 2,336.653 ns | 9.1249 ns | 8.5355 ns | 2,092.87 |    9.28 | 0.0114 |     232 B |
+| Exception | .NET 8.0 | 2,303.988 ns | 2.6537 ns | 2.0719 ns | 2,063.61 |    5.80 | 0.0114 |     232 B |
 | Exception | .NET 9.0 | 1,072.247 ns | 8.2707 ns | 7.3317 ns |   960.38 |    6.84 | 0.0134 |     224 B |
 ```
 
 ## 🏁 Results
 
 - 🚀 Controlling logic via exceptions is expensive, inefficient and not smart. Doing away with exceptions is almost 500x faster and more efficient.
-- With .NET 8.0, performance has improved in both cases, but in the case of Condition, .NET 8 is more than 20 times faster than .NET 7.
+- With .NET 8, performance has improved in both cases, but in the case of Condition, .NET 8 is more than 20 times faster than .NET 7.
+- With .NET 9, exception handling has become significantly more performant.
 
 ## Remarks
 
