@@ -5,24 +5,28 @@ SHA512 is a class whose compute functions cannot in principle be shared across m
 ## 🔥 Benchmark
 
 ```sh
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
 
-| Method   | Job      | Runtime  | Mean     | Error     | StdDev    | Gen0   | Allocated |
-|--------- |--------- |--------- |---------:|----------:|----------:|-------:|----------:|
-| Create   | .NET 7.0 | .NET 7.0 | 1.836 us | 0.0336 us | 0.0314 us | 0.0172 |     304 B |
-| Create   | .NET 8.0 | .NET 8.0 | 1.816 us | 0.0215 us | 0.0201 us | 0.0172 |     304 B |
-|          |          |          |          |           |           |        |           |
-| Lock     | .NET 7.0 | .NET 7.0 | 1.579 us | 0.0275 us | 0.0244 us | 0.0095 |     176 B |
-| Lock     | .NET 8.0 | .NET 8.0 | 1.576 us | 0.0128 us | 0.0120 us | 0.0095 |     176 B |
-|          |          |          |          |           |           |        |           |
-| HashData | .NET 7.0 | .NET 7.0 | 1.647 us | 0.0208 us | 0.0194 us | 0.0038 |      88 B |
-| HashData | .NET 8.0 | .NET 8.0 | 1.618 us | 0.0146 us | 0.0122 us | 0.0038 |      88 B |
+| Method   | Runtime  | Mean     | Error     | StdDev    | Ratio | Gen0   | Allocated | Alloc Ratio |
+|--------- |--------- |---------:|----------:|----------:|------:|-------:|----------:|------------:|
+| Create   | .NET 7.0 | 1.309 us | 0.0054 us | 0.0051 us |  1.01 | 0.0172 |     304 B |        0.97 |
+| Create   | .NET 8.0 | 1.282 us | 0.0062 us | 0.0058 us |  0.99 | 0.0172 |     304 B |        0.97 |
+| Create   | .NET 9.0 | 1.301 us | 0.0056 us | 0.0050 us |  1.00 | 0.0172 |     312 B |        1.00 |
+|          |          |          |           |           |       |        |           |             |
+| Lock     | .NET 7.0 | 1.090 us | 0.0036 us | 0.0032 us |  1.00 | 0.0095 |     176 B |        1.00 |
+| Lock     | .NET 8.0 | 1.070 us | 0.0019 us | 0.0016 us |  0.98 | 0.0095 |     176 B |        1.00 |
+| Lock     | .NET 9.0 | 1.092 us | 0.0042 us | 0.0039 us |  1.00 | 0.0095 |     176 B |        1.00 |
+|          |          |          |           |           |       |        |           |             |
+| HashData | .NET 7.0 | 1.123 us | 0.0091 us | 0.0080 us |  0.99 | 0.0038 |      88 B |        1.00 |
+| HashData | .NET 8.0 | 1.123 us | 0.0033 us | 0.0028 us |  1.00 | 0.0038 |      88 B |        1.00 |
+| HashData | .NET 9.0 | 1.129 us | 0.0080 us | 0.0074 us |  1.00 | 0.0038 |      88 B |        1.00 |
 ```
 
 ## 🏁 Results
@@ -38,9 +42,10 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

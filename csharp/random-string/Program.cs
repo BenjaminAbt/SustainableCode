@@ -3,30 +3,37 @@
 using System;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     [Params(10, 100, 1000)]
     public int CharLength { get; set; }
 
-    [Benchmark(Baseline = true)]
-    public string StringCreate() => StringCreateSample.CreateRandomString(CharLength);
+    [Benchmark]
+    public string StringCreate()
+        => StringCreateSample.CreateRandomString(CharLength);
 
     [Benchmark]
-    public string EnumerateRepeat() => EnumerateRepeatSample.CreateRandomString(CharLength);
+    public string EnumerateRepeat()
+        => EnumerateRepeatSample.CreateRandomString(CharLength);
 
     [Benchmark]
-    public string CharArray() => CharArraySample.CreateRandomString(CharLength);
+    public string CharArray()
+        => CharArraySample.CreateRandomString(CharLength);
 
     [Benchmark]
-    public string Span() => SpanSample.CreateRandomString(CharLength);
+    public string Span()
+        => SpanSample.CreateRandomString(CharLength);
 }
 
 public static class SampleConstants

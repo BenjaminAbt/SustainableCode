@@ -7,21 +7,24 @@ Visit https://github.com/NetFabric/NetFabric.Hyperlinq
 ## 🔥 Benchmark
 
 ```sh
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
 
-| Method          | Runtime  | Mean     | Ratio | RatioSD | Gen0   | Gen1   | Allocated | Alloc Ratio |
-|---------------- |--------- |---------:|------:|--------:|-------:|-------:|----------:|------------:|
-| SystemLinqWhere | .NET 7.0 | 3.237 us |  1.00 |    0.00 | 0.5074 | 0.0038 |    8.3 KB |        1.00 |
-| SystemLinqWhere | .NET 8.0 | 2.106 us |  1.00 |    0.00 | 0.5074 | 0.0038 |    8.3 KB |        1.00 |
-|                 |          |          |       |         |        |        |           |             |
-| HyperLinqWhere  | .NET 7.0 | 2.146 us |  0.66 |    0.05 | 0.2174 |      - |   3.57 KB |        0.43 |
-| HyperLinqWhere  | .NET 8.0 | 1.471 us |  0.69 |    0.02 | 0.2174 | 0.0019 |   3.57 KB |        0.43 |
+| Method          | Runtime  | Mean       | Ratio | RatioSD | Gen0   | Gen1   | Allocated | Alloc Ratio |
+|---------------- |--------- |-----------:|------:|--------:|-------:|-------:|----------:|------------:|
+| SystemLinqWhere | .NET 7.0 | 1,837.1 ns |  3.03 |    0.04 | 0.5074 | 0.0057 |    8.3 KB |        2.28 |
+| SystemLinqWhere | .NET 8.0 | 1,099.0 ns |  1.82 |    0.02 | 0.5074 | 0.0057 |    8.3 KB |        2.28 |
+| SystemLinqWhere | .NET 9.0 |   605.4 ns |  1.00 |    0.01 | 0.2222 |      - |   3.64 KB |        1.00 |
+|                 |          |            |       |         |        |        |           |             |
+| HyperLinqWhere  | .NET 7.0 | 1,775.3 ns |  2.93 |    0.03 | 0.2174 | 0.0019 |   3.57 KB |        0.98 |
+| HyperLinqWhere  | .NET 8.0 |   850.6 ns |  1.41 |    0.02 | 0.2174 | 0.0029 |   3.57 KB |        0.98 |
+| HyperLinqWhere  | .NET 9.0 |         NA |     ? |       ? |     NA |     NA |        NA |           ? |
 ```
 
 ## 🏁 Results
@@ -43,9 +46,10 @@ While allocations have not improved in .NET 8, performance has improved signific
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

@@ -5,14 +5,17 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     [Benchmark]
@@ -63,7 +66,10 @@ public class Benchmark
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void InternalWriteBuffer(ref char[] buffer, ref string data, ref int pos)
     {
-        for (int i = 0; i < data.Length; i++) buffer[pos++] = data[i];
+        for (int i = 0; i < data.Length; i++)
+        {
+            buffer[pos++] = data[i];
+        }
     }
 
     public IEnumerable<object[]> TestData()

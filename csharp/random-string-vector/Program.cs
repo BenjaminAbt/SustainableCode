@@ -1,28 +1,5 @@
 // Made by Benjamin Abt - https://github.com/BenjaminAbt
 
-/* RESULTS
- * 
- * BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19044.2130/21H2/November2021Update)
- * AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
- * .NET SDK=7.0.100-rc.2.22477.23
- *   [Host]     : .NET 7.0.0 (7.0.22.47203), X64 RyuJIT AVX2
- *   DefaultJob : .NET 7.0.0 (7.0.22.47203), X64 RyuJIT AVX2
- * 
- * 
- * |       Method | CharLength |        Mean |     Error |    StdDev | Ratio |
- * |------------- |----------- |------------:|----------:|----------:|------:|
- * | StringCreate |         10 |    83.73 ns |  1.206 ns |  1.069 ns |  1.00 |
- * |   Vectorized |         10 |    76.56 ns |  0.233 ns |  0.207 ns |  0.91 |
- * |              |            |             |           |           |       |
- * | StringCreate |        100 |   740.87 ns |  1.951 ns |  1.825 ns |  1.00 |
- * |   Vectorized |        100 |    77.88 ns |  0.725 ns |  0.678 ns |  0.11 |
- * |              |            |             |           |           |       |
- * | StringCreate |       1000 | 7,438.46 ns | 25.437 ns | 23.793 ns |  1.00 |
- * |   Vectorized |       1000 |   365.80 ns |  2.458 ns |  2.179 ns |  0.05 |
- * 
- * */
-
-
 // ================================================
 using System;
 using System.Diagnostics;
@@ -51,12 +28,13 @@ BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark>();
 
 [SimpleJob(RuntimeMoniker.Net70)]
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
 public class Benchmark
 {
     [Params(10, 100, 1000)]
     public int CharLength { get; set; } = 100;
 
-    [Benchmark(Baseline = true)]
+    [Benchmark]
     public string StringCreate() => StringCreateSample.CreateRandomString(CharLength);
 
     [Benchmark]
@@ -193,8 +171,8 @@ public static class VectorSample
             // so the whole range of 64 bytes can be used. In regards to entropy it would be
             // better to leave them off, as 2/62 are more likely this way. But for speed it's
             // better.
-            seed[62] = (byte)Unsafe.Add(ref chars, Random.Shared.Next(62));
-            seed[63] = (byte)Unsafe.Add(ref chars, Random.Shared.Next(62));
+            seed[62] = Unsafe.Add(ref chars, Random.Shared.Next(62));
+            seed[63] = Unsafe.Add(ref chars, Random.Shared.Next(62));
         }
         //---------------------------------------------------------------------
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

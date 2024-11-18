@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using Microsoft.Extensions.ObjectPool;
 
@@ -24,8 +25,10 @@ BenchmarkDotNet.Running.BenchmarkRunner.Run<Benchmark>();
 #endif
 
 [MemoryDiagnoser]
+[SimpleJob(RuntimeMoniker.Net70)]
 [SimpleJob(RuntimeMoniker.Net80)]
-[SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     public const string Input = @"""
@@ -40,25 +43,32 @@ public class Benchmark
         """;
 
     [Benchmark]
-    public string StringBuilder_Pool() => Cleanups.UsingStringBuilderPool(Input);
+    public string StringBuilder_Pool()
+        => Cleanups.UsingStringBuilderPool(Input);
 
     [Benchmark]
-    public string StringBuilder_Instance() => Cleanups.UsingStringBuilderInstance(Input);
+    public string StringBuilder_Instance()
+        => Cleanups.UsingStringBuilderInstance(Input);
 
     [Benchmark]
-    public string Linq() => Cleanups.UsingLinq(Input);
+    public string Linq()
+        => Cleanups.UsingLinq(Input);
 
     [Benchmark]
-    public string Span() => Cleanups.UsingSpan(Input);
-
-    [Benchmark(Baseline = true)]
-    public string Span1() => Cleanups.UseSpan1(Input);
+    public string Span()
+        => Cleanups.UsingSpan(Input);
 
     [Benchmark]
-    public string Span2() => Cleanups.UseSpan2(Input);
+    public string Span1()
+        => Cleanups.UseSpan1(Input);
 
     [Benchmark]
-    public string Span2Unsafe() => Cleanups.UseSpan2Unsafe(Input);
+    public string Span2()
+        => Cleanups.UseSpan2(Input);
+
+    [Benchmark]
+    public string Span2Unsafe()
+        => Cleanups.UseSpan2Unsafe(Input);
 }
 
 public static class Cleanups

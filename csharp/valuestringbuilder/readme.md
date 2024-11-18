@@ -1,7 +1,7 @@
 # 🌳 Sustainable Code - String.Create vs ValueStringBuilder 📊 
 
 - Internal [ValueStringBuilder](https://github.com/dotnet/runtime/blob/cabb8b089fd3d84fc46446c2079ddc1981b55fd9/src/libraries/Common/src/System/Text/ValueStringBuilder.cs#L11)
-- [String.Create](https://learn.microsoft.com/en-us/dotnet/api/system.string.create?view=net-6.0&WT.mc_id=DT-MVP-5001507)
+- [String.Create](https://learn.microsoft.com/en-us/dotnet/api/system.string.create?WT.mc_id=DT-MVP-5001507)
 
 See more here
 
@@ -13,23 +13,28 @@ See more here
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
-| Method                  | Runtime  | Error    | StdDev   | Gen0   | Allocated |
-|------------------------ |--------- |---------:|---------:|-------:|----------:|
-| StringCreate_Case       | .NET 7.0 | 0.368 ns | 0.492 ns | 0.0067 |     112 B |
-| StringCreate_Case       | .NET 8.0 | 0.257 ns | 0.241 ns | 0.0067 |     112 B |
-|                         |          |          |          |        |           |
-| StringJoin_Case         | .NET 7.0 | 0.466 ns | 0.572 ns | 0.0062 |     104 B |
-| StringJoin_Case         | .NET 8.0 | 0.465 ns | 0.620 ns | 0.0062 |     104 B |
-|                         |          |          |          |        |           |
-| ValueStringBuilder_Case | .NET 7.0 | 0.749 ns | 0.701 ns | 0.0033 |      56 B |
-| ValueStringBuilder_Case | .NET 8.0 | 0.714 ns | 0.668 ns | 0.0033 |      56 B |
+
+| Method                  | Runtime  | Mean      | Error     | StdDev    | Ratio | Allocated | Alloc Ratio |
+|------------------------ |--------- |----------:|----------:|----------:|------:|----------:|------------:|
+| StringCreate_Case       | .NET 7.0 | 10.116 ns | 0.1257 ns | 0.1114 ns |  1.04 |     112 B |        1.00 |
+| StringCreate_Case       | .NET 8.0 |  9.652 ns | 0.0441 ns | 0.0391 ns |  0.99 |     112 B |        1.00 |
+| StringCreate_Case       | .NET 9.0 |  9.746 ns | 0.0674 ns | 0.0631 ns |  1.00 |     112 B |        1.00 |
+|                         |          |           |           |           |       |           |             |
+| StringJoin_Case         | .NET 7.0 | 14.972 ns | 0.1940 ns | 0.1720 ns |  1.46 |     104 B |        1.86 |
+| StringJoin_Case         | .NET 8.0 | 12.909 ns | 0.0862 ns | 0.0806 ns |  1.26 |     104 B |        1.86 |
+| StringJoin_Case         | .NET 9.0 | 10.236 ns | 0.0691 ns | 0.0612 ns |  1.00 |      56 B |        1.00 |
+|                         |          |           |           |           |       |           |             |
+| ValueStringBuilder_Case | .NET 7.0 | 21.547 ns | 0.1208 ns | 0.1071 ns |  1.40 |      56 B |        1.00 |
+| ValueStringBuilder_Case | .NET 8.0 | 23.029 ns | 0.0900 ns | 0.0841 ns |  1.49 |      56 B |        1.00 |
+| ValueStringBuilder_Case | .NET 9.0 | 15.417 ns | 0.0803 ns | 0.0712 ns |  1.00 |      56 B |        1.00 |
 ```
 
 
@@ -46,9 +51,10 @@ The performance difference has not changed significantly between .NET 7 and .NET
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

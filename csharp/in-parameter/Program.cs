@@ -1,14 +1,16 @@
 // Made by Benjamin Abt - https://github.com/BenjaminAbt
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     private int _a = 100, _b = 200, _c = 300, _d = 3;

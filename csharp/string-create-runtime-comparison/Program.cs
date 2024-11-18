@@ -2,14 +2,17 @@
 
 using System;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net70, baseline: true)]
+[SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     public const string A = "Batman";
@@ -17,11 +20,13 @@ public class Benchmark
     public const string C = "Robin ";
 
     [Benchmark]
-    public string String_Concat() => A + B + C;
+    public string String_Concat()
+        => A + B + C;
 
 
     [Benchmark]
-    public string String_Interpolate() => $"{A}{B}{C}";
+    public string String_Interpolate()
+        => $"{A}{B}{C}";
 
 
     [Benchmark]
@@ -29,9 +34,9 @@ public class Benchmark
     {
         int length = A.Length + B.Length + C.Length;
 
-        var myString = string.Create(length, (A, B, C), (chars, state) =>
+        string myString = string.Create(length, (A, B, C), (chars, state) =>
         {
-            var position = 0;
+            int position = 0;
 
             // a
             state.A.AsSpan().CopyTo(chars);

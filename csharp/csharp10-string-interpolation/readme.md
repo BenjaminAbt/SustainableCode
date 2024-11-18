@@ -9,21 +9,24 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
 
-| Method       | Job      | Runtime  | Mean     | Error    | StdDev   | Gen0   | Allocated |
-|------------- |--------- |--------- |---------:|---------:|---------:|-------:|----------:|
-| String       | .NET 7.0 | .NET 7.0 | 37.46 ns | 0.785 ns | 1.020 ns | 0.0033 |      56 B |
-| String       | .NET 8.0 | .NET 8.0 | 38.10 ns | 0.725 ns | 0.678 ns | 0.0033 |      56 B |
-|              |          |          |          |          |          |        |           |
-| StringCreate | .NET 7.0 | .NET 7.0 | 23.99 ns | 0.506 ns | 0.562 ns | 0.0033 |      56 B |
-| StringCreate | .NET 8.0 | .NET 8.0 | 21.19 ns | 0.431 ns | 0.403 ns | 0.0033 |      56 B |
+| Method       | Runtime  | Mean      | StdDev    | Ratio | Allocated |
+|------------- |--------- |----------:|----------:|------:|----------:|
+| String       | .NET 7.0 | 20.872 ns | 0.0560 ns |  1.48 |      56 B |
+| String       | .NET 8.0 | 22.092 ns | 0.0347 ns |  1.57 |      56 B |
+| String       | .NET 9.0 | 14.058 ns | 0.0338 ns |  1.00 |      56 B |
+|              |          |           |           |       |           |
+| StringCreate | .NET 7.0 | 11.206 ns | 0.0374 ns |  1.18 |      56 B |
+| StringCreate | .NET 8.0 | 10.074 ns | 0.0426 ns |  1.06 |      56 B |
+| StringCreate | .NET 9.0 |  9.524 ns | 0.1118 ns |  1.00 |      56 B |
 ```
 
 ## 🏁 Results
@@ -40,9 +43,10 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

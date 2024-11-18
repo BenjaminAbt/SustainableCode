@@ -7,24 +7,28 @@ This sample, based on .NET and [Compile-time logging source generation]](https:/
 For better comparability, additional string concat were added.
 
 ```
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
 
-| Method              | Runtime  | Mean     | Error   | StdDev  | Ratio | RatioSD | Gen0   | Allocated |
-|-------------------- |--------- |---------:|--------:|--------:|------:|--------:|-------:|----------:|
-| SourceCodeGenerated | .NET 7.0 | 114.4 ns | 2.30 ns | 2.15 ns |  1.00 |    0.00 |      - |         - |
-| SourceCodeGenerated | .NET 8.0 | 109.0 ns | 1.83 ns | 1.71 ns |  1.00 |    0.00 |      - |         - |
-|                     |          |          |         |         |       |         |        |           |
-| Concat              | .NET 7.0 | 176.2 ns | 3.49 ns | 3.88 ns |  1.54 |    0.05 | 0.0286 |     480 B |
-| Concat              | .NET 8.0 | 148.5 ns | 2.94 ns | 3.72 ns |  1.37 |    0.04 | 0.0286 |     480 B |
-|                     |          |          |         |         |       |         |        |           |
-| Interpolation       | .NET 7.0 | 178.8 ns | 3.52 ns | 3.91 ns |  1.57 |    0.05 | 0.0286 |     480 B |
-| Interpolation       | .NET 8.0 | 147.9 ns | 2.54 ns | 4.03 ns |  1.38 |    0.04 | 0.0286 |     480 B |
+| Method              | Runtime  | Mean      | Error    | StdDev   | Ratio | RatioSD | Gen0   | Allocated |
+|-------------------- |--------- |----------:|---------:|---------:|------:|--------:|-------:|----------:|
+| SourceCodeGenerated | .NET 7.0 |  83.49 ns | 0.299 ns | 0.279 ns |  1.24 |    0.01 |      - |         - |
+| SourceCodeGenerated | .NET 8.0 |  82.12 ns | 0.252 ns | 0.224 ns |  1.22 |    0.01 |      - |         - |
+| SourceCodeGenerated | .NET 9.0 |  67.30 ns | 0.365 ns | 0.341 ns |  1.00 |    0.01 |      - |         - |
+|                     |          |           |          |          |       |         |        |           |
+| Concat              | .NET 7.0 | 112.57 ns | 0.235 ns | 0.208 ns |  1.67 |    0.01 | 0.0286 |     480 B |
+| Concat              | .NET 8.0 |  96.94 ns | 1.239 ns | 1.098 ns |  1.44 |    0.02 | 0.0286 |     480 B |
+| Concat              | .NET 9.0 |  94.59 ns | 1.136 ns | 1.007 ns |  1.41 |    0.02 | 0.0286 |     480 B |
+|                     |          |           |          |          |       |         |        |           |
+| Interpolation       | .NET 7.0 | 112.79 ns | 0.444 ns | 0.416 ns |  1.68 |    0.01 | 0.0286 |     480 B |
+| Interpolation       | .NET 8.0 |  97.08 ns | 1.208 ns | 1.071 ns |  1.44 |    0.02 | 0.0286 |     480 B |
+| Interpolation       | .NET 9.0 |  94.12 ns | 0.620 ns | 0.580 ns |  1.40 |    0.01 | 0.0286 |     480 B |
 ```
 
 ## 🏁 Results
@@ -50,9 +54,10 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

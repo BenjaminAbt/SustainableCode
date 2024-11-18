@@ -3,14 +3,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     private IEnumerable<int> _collection;
@@ -63,7 +66,7 @@ public class Benchmark
     private static int RunIEnumerable(IEnumerable<int> enumerable)
     {
         int sum = 0;
-        foreach (var item in enumerable)
+        foreach (int item in enumerable)
         {
             sum = sum + item;
         }
@@ -72,7 +75,7 @@ public class Benchmark
     private static int RunList(List<int> list)
     {
         int sum = 0;
-        foreach (var item in list)
+        foreach (int item in list)
         {
             sum = sum + item;
         }

@@ -38,8 +38,35 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 |                        |          |          |            |       |           |           |           |           |        |         |
 | List_Count_Property    | .NET 8.0 | .NET 8.0 | List       | 10000 | 0.0398 ns | 0.0203 ns | 0.0190 ns | 0.0441 ns |   1.00 |    0.00 |
 | List_Count_Method      | .NET 8.0 | .NET 8.0 | List       | 10000 | 1.6535 ns | 0.0313 ns | 0.0278 ns | 1.6401 ns |  61.39 |   45.47 |
+
+
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+
+
+| Method                 | Runtime  | Mean      | StdDev    |
+|----------------------- |--------- |----------:|----------:|
+| HashSet_Count_Method   | .NET 7.0 | 1.3368 ns | 0.0084 ns |
+| HashSet_Count_Method   | .NET 8.0 | 1.2247 ns | 0.0027 ns |
+| HashSet_Count_Method   | .NET 9.0 | 0.3772 ns | 0.0043 ns |
+|                        |          |           |           |
+| HashSet_Count_Property | .NET 7.0 | 0.0057 ns | 0.0014 ns |
+| HashSet_Count_Property | .NET 8.0 | 0.0034 ns | 0.0040 ns |
+| HashSet_Count_Property | .NET 9.0 | 0.0007 ns | 0.0015 ns |
+|                        |          |           |           |
+| List_Count_Method      | .NET 7.0 | 1.3489 ns | 0.0104 ns |
+| List_Count_Method      | .NET 8.0 | 1.2332 ns | 0.0093 ns |
+| List_Count_Method      | .NET 9.0 | 0.3716 ns | 0.0017 ns |
+|                        |          |           |           |
+| List_Count_Property    | .NET 7.0 | 0.0037 ns | 0.0017 ns |
+| List_Count_Property    | .NET 8.0 | 0.0018 ns | 0.0007 ns |
+| List_Count_Property    | .NET 9.0 | 0.0008 ns | 0.0017 ns |
 ```
-*Some columns of the output were removed*
 
 ## 🏁 Results
 
@@ -57,9 +84,10 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release -f net7.0 --runtimes net6.0 net7.0
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

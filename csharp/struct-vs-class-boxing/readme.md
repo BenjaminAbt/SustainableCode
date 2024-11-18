@@ -9,26 +9,32 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
-| Method              | Job      | Runtime  | Mean      | Error     | StdDev    | Median    | Gen0   | Allocated |
-|-------------------- |--------- |--------- |----------:|----------:|----------:|----------:|-------:|----------:|
-| Class               | .NET 7.0 | .NET 7.0 | 3.9827 ns | 0.1245 ns | 0.1332 ns | 3.9282 ns | 0.0014 |      24 B |
-| Class               | .NET 8.0 | .NET 8.0 | 3.0353 ns | 0.1014 ns | 0.1041 ns | 3.0008 ns | 0.0014 |      24 B |
-|                     |          |          |           |           |           |           |        |           |
-| Struct              | .NET 7.0 | .NET 7.0 | 0.0165 ns | 0.0200 ns | 0.0187 ns | 0.0059 ns |      - |         - |
-| Struct              | .NET 8.0 | .NET 8.0 | 0.0096 ns | 0.0147 ns | 0.0130 ns | 0.0032 ns |      - |         - |
-|                     |          |          |           |           |           |           |        |           |
-| ClassWithInterface  | .NET 7.0 | .NET 7.0 | 4.0388 ns | 0.1193 ns | 0.1276 ns | 3.9751 ns | 0.0014 |      24 B |
-| ClassWithInterface  | .NET 8.0 | .NET 8.0 | 3.2790 ns | 0.1087 ns | 0.1787 ns | 3.2270 ns | 0.0014 |      24 B |
-|                     |          |          |           |           |           |           |        |           |
-| StructWithInterface | .NET 7.0 | .NET 7.0 | 4.0907 ns | 0.1203 ns | 0.1338 ns | 4.0992 ns | 0.0014 |      24 B |
-| StructWithInterface | .NET 8.0 | .NET 8.0 | 3.3699 ns | 0.1103 ns | 0.1651 ns | 3.3568 ns | 0.0014 |      24 B |
+
+| Method              | Runtime  | Mean      | Error     | StdDev    | Ratio | RatioSD | Gen0   | Allocated |
+|-------------------- |--------- |----------:|----------:|----------:|------:|--------:|-------:|----------:|
+| Class               | .NET 7.0 | 2.5567 ns | 0.0362 ns | 0.0339 ns |  1.63 |    0.02 | 0.0014 |      24 B |
+| Class               | .NET 8.0 | 1.6313 ns | 0.0331 ns | 0.0276 ns |  1.04 |    0.02 | 0.0014 |      24 B |
+| Class               | .NET 9.0 | 1.5723 ns | 0.0120 ns | 0.0100 ns |  1.00 |    0.01 | 0.0014 |      24 B |
+|                     |          |           |           |           |       |         |        |           |
+| ClassWithInterface  | .NET 7.0 | 2.5173 ns | 0.0331 ns | 0.0294 ns |  1.59 |    0.02 | 0.0014 |      24 B |
+| ClassWithInterface  | .NET 8.0 | 1.6194 ns | 0.0389 ns | 0.0364 ns |  1.03 |    0.02 | 0.0014 |      24 B |
+| ClassWithInterface  | .NET 9.0 | 1.5783 ns | 0.0123 ns | 0.0115 ns |  1.00 |    0.01 | 0.0014 |      24 B |
+|                     |          |           |           |           |       |         |        |           |
+| Struct              | .NET 7.0 | 0.0102 ns | 0.0065 ns | 0.0055 ns |     ? |       ? |      - |         - |
+| Struct              | .NET 8.0 | 0.0009 ns | 0.0007 ns | 0.0005 ns |     ? |       ? |      - |         - |
+| Struct              | .NET 9.0 | 0.0013 ns | 0.0018 ns | 0.0016 ns |     ? |       ? |      - |         - |
+|                     |          |           |           |           |       |         |        |           |
+| StructWithInterface | .NET 7.0 | 2.6001 ns | 0.0371 ns | 0.0347 ns |  1.63 |    0.03 | 0.0014 |      24 B |
+| StructWithInterface | .NET 8.0 | 1.6315 ns | 0.0241 ns | 0.0226 ns |  1.02 |    0.02 | 0.0014 |      24 B |
+| StructWithInterface | .NET 9.0 | 1.5944 ns | 0.0167 ns | 0.0140 ns |  1.00 |    0.01 | 0.0014 |      24 B |
 ```
 
 ## 🏁 Results
@@ -48,9 +54,10 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

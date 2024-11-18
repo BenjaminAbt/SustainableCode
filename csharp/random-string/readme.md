@@ -9,45 +9,64 @@ This sample, based on .NET 6 and [string.Create()](https://docs.microsoft.com/do
 ## 🔥 Benchmark
 
 ```sh
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
 
-| Method          | Runtime  | CharLength | Mean        | Error      | StdDev     | Ratio | RatioSD | Gen0   | Allocated | Alloc Ratio |
-|---------------- |--------- |----------- |------------:|-----------:|-----------:|------:|--------:|-------:|----------:|------------:|
-| StringCreate    | .NET 7.0 | 10         |    35.39 ns |   0.727 ns |   0.808 ns |  1.00 |    0.00 | 0.0029 |      48 B |        1.00 |
-| EnumerateRepeat | .NET 7.0 | 10         |   110.11 ns |   1.442 ns |   1.349 ns |  3.11 |    0.08 | 0.0114 |     192 B |        4.00 |
-| CharArray       | .NET 7.0 | 10         |    35.78 ns |   0.581 ns |   0.543 ns |  1.01 |    0.03 | 0.0057 |      96 B |        2.00 |
-| Span            | .NET 7.0 | 10         |    34.56 ns |   0.454 ns |   0.425 ns |  0.98 |    0.03 | 0.0029 |      48 B |        1.00 |
-|                 |          |            |             |            |            |       |         |        |           |             |
-| StringCreate    | .NET 8.0 | 10         |    23.50 ns |   0.421 ns |   0.394 ns |  1.00 |    0.00 | 0.0029 |      48 B |        1.00 |
-| EnumerateRepeat | .NET 8.0 | 10         |    74.25 ns |   0.613 ns |   0.544 ns |  3.16 |    0.05 | 0.0114 |     192 B |        4.00 |
-| CharArray       | .NET 8.0 | 10         |    26.19 ns |   0.543 ns |   0.581 ns |  1.11 |    0.04 | 0.0057 |      96 B |        2.00 |
-| Span            | .NET 8.0 | 10         |    22.87 ns |   0.408 ns |   0.362 ns |  0.97 |    0.02 | 0.0029 |      48 B |        1.00 |
-|                 |          |            |             |            |            |       |         |        |           |             |
-| StringCreate    | .NET 7.0 | 100        |   297.16 ns |   3.904 ns |   3.652 ns |  1.00 |    0.00 | 0.0134 |     224 B |        1.00 |
-| EnumerateRepeat | .NET 7.0 | 100        |   707.81 ns |  13.308 ns |  12.448 ns |  2.38 |    0.05 | 0.0324 |     544 B |        2.43 |
-| CharArray       | .NET 7.0 | 100        |   295.44 ns |   5.884 ns |   5.216 ns |  0.99 |    0.02 | 0.0267 |     448 B |        2.00 |
-| Span            | .NET 7.0 | 100        |   293.80 ns |   3.910 ns |   3.658 ns |  0.99 |    0.02 | 0.0134 |     224 B |        1.00 |
-|                 |          |            |             |            |            |       |         |        |           |             |
-| StringCreate    | .NET 8.0 | 100        |   191.18 ns |   1.864 ns |   1.744 ns |  1.00 |    0.00 | 0.0134 |     224 B |        1.00 |
-| EnumerateRepeat | .NET 8.0 | 100        |   420.08 ns |   8.006 ns |   7.489 ns |  2.20 |    0.04 | 0.0324 |     544 B |        2.43 |
-| CharArray       | .NET 8.0 | 100        |   203.43 ns |   4.105 ns |   4.216 ns |  1.07 |    0.03 | 0.0267 |     448 B |        2.00 |
-| Span            | .NET 8.0 | 100        |   181.78 ns |   3.416 ns |   3.195 ns |  0.95 |    0.02 | 0.0134 |     224 B |        1.00 |
-|                 |          |            |             |            |            |       |         |        |           |             |
-| StringCreate    | .NET 7.0 | 1000       | 3,000.02 ns |  46.516 ns |  43.511 ns |  1.00 |    0.00 | 0.1183 |    2024 B |        1.00 |
-| EnumerateRepeat | .NET 7.0 | 1000       | 6,633.78 ns | 102.422 ns |  95.806 ns |  2.21 |    0.04 | 0.2441 |    4144 B |        2.05 |
-| CharArray       | .NET 7.0 | 1000       | 2,919.56 ns |  57.803 ns |  51.241 ns |  0.97 |    0.02 | 0.2403 |    4048 B |        2.00 |
-| Span            | .NET 7.0 | 1000       | 2,745.92 ns |  33.841 ns |  31.654 ns |  0.92 |    0.02 | 0.1183 |    2024 B |        1.00 |
-|                 |          |            |             |            |            |       |         |        |           |             |
-| StringCreate    | .NET 8.0 | 1000       | 1,908.84 ns |  23.776 ns |  22.240 ns |  1.00 |    0.00 | 0.1183 |    2024 B |        1.00 |
-| EnumerateRepeat | .NET 8.0 | 1000       | 3,822.60 ns |  18.622 ns |  16.508 ns |  2.00 |    0.03 | 0.2441 |    4144 B |        2.05 |
-| CharArray       | .NET 8.0 | 1000       | 2,045.09 ns |  42.378 ns | 120.218 ns |  1.04 |    0.06 | 0.2403 |    4048 B |        2.00 |
-| Span            | .NET 8.0 | 1000       | 1,709.99 ns |  19.047 ns |  16.885 ns |  0.90 |    0.01 | 0.1202 |    2024 B |        1.00 |
+| Method          | Runtime  | CharLength | Mean        | Error     | StdDev    | Ratio | Allocated |
+|---------------- |--------- |----------- |------------:|----------:|----------:|------:|----------:|
+| StringCreate    | .NET 7.0 | 10         |    28.13 ns |  0.141 ns |  0.118 ns |  1.88 |      48 B |
+| StringCreate    | .NET 8.0 | 10         |    15.81 ns |  0.181 ns |  0.169 ns |  1.05 |      48 B |
+| StringCreate    | .NET 9.0 | 10         |    14.99 ns |  0.085 ns |  0.071 ns |  1.00 |      48 B |
+|                 |          |            |             |           |           |       |           |
+| EnumerateRepeat | .NET 7.0 | 10         |    74.58 ns |  1.077 ns |  0.955 ns |  2.21 |     192 B |
+| EnumerateRepeat | .NET 8.0 | 10         |    47.17 ns |  0.337 ns |  0.299 ns |  1.40 |     192 B |
+| EnumerateRepeat | .NET 9.0 | 10         |    33.77 ns |  0.320 ns |  0.267 ns |  1.00 |     192 B |
+|                 |          |            |             |           |           |       |           |
+| CharArray       | .NET 7.0 | 10         |    28.92 ns |  0.168 ns |  0.157 ns |  1.66 |      96 B |
+| CharArray       | .NET 8.0 | 10         |    17.58 ns |  0.113 ns |  0.101 ns |  1.01 |      96 B |
+| CharArray       | .NET 9.0 | 10         |    17.45 ns |  0.222 ns |  0.207 ns |  1.00 |      96 B |
+|                 |          |            |             |           |           |       |           |
+| Span            | .NET 7.0 | 10         |    28.20 ns |  0.097 ns |  0.076 ns |  1.85 |      48 B |
+| Span            | .NET 8.0 | 10         |    15.30 ns |  0.102 ns |  0.096 ns |  1.00 |      48 B |
+| Span            | .NET 9.0 | 10         |    15.24 ns |  0.160 ns |  0.142 ns |  1.00 |      48 B |
+|                 |          |            |             |           |           |       |           |
+| StringCreate    | .NET 7.0 | 100        |   279.18 ns |  1.074 ns |  0.897 ns |  2.31 |     224 B |
+| StringCreate    | .NET 8.0 | 100        |   129.04 ns |  0.879 ns |  0.822 ns |  1.07 |     224 B |
+| StringCreate    | .NET 9.0 | 100        |   120.93 ns |  0.638 ns |  0.597 ns |  1.00 |     224 B |
+|                 |          |            |             |           |           |       |           |
+| EnumerateRepeat | .NET 7.0 | 100        |   525.01 ns |  2.208 ns |  1.724 ns |  3.01 |     544 B |
+| EnumerateRepeat | .NET 8.0 | 100        |   311.45 ns |  3.997 ns |  3.739 ns |  1.79 |     544 B |
+| EnumerateRepeat | .NET 9.0 | 100        |   174.32 ns |  0.945 ns |  0.838 ns |  1.00 |     544 B |
+|                 |          |            |             |           |           |       |           |
+| CharArray       | .NET 7.0 | 100        |   270.20 ns |  1.172 ns |  1.096 ns |  2.29 |     448 B |
+| CharArray       | .NET 8.0 | 100        |   126.29 ns |  1.023 ns |  0.957 ns |  1.07 |     448 B |
+| CharArray       | .NET 9.0 | 100        |   118.22 ns |  0.606 ns |  0.567 ns |  1.00 |     448 B |
+|                 |          |            |             |           |           |       |           |
+| Span            | .NET 7.0 | 100        |   270.39 ns |  2.522 ns |  2.359 ns |  2.27 |     224 B |
+| Span            | .NET 8.0 | 100        |   118.29 ns |  0.368 ns |  0.344 ns |  0.99 |     224 B |
+| Span            | .NET 9.0 | 100        |   119.29 ns |  1.066 ns |  0.997 ns |  1.00 |     224 B |
+|                 |          |            |             |           |           |       |           |
+| StringCreate    | .NET 7.0 | 1000       | 2,625.71 ns | 10.050 ns |  9.401 ns |  2.18 |    2024 B |
+| StringCreate    | .NET 8.0 | 1000       | 1,217.06 ns |  4.586 ns |  3.830 ns |  1.01 |    2024 B |
+| StringCreate    | .NET 9.0 | 1000       | 1,205.26 ns |  7.794 ns |  6.508 ns |  1.00 |    2024 B |
+|                 |          |            |             |           |           |       |           |
+| EnumerateRepeat | .NET 7.0 | 1000       | 4,848.13 ns | 13.721 ns | 11.458 ns |  3.05 |    4144 B |
+| EnumerateRepeat | .NET 8.0 | 1000       | 2,747.68 ns | 10.834 ns |  9.047 ns |  1.73 |    4144 B |
+| EnumerateRepeat | .NET 9.0 | 1000       | 1,587.60 ns | 10.722 ns |  8.371 ns |  1.00 |    4144 B |
+|                 |          |            |             |           |           |       |           |
+| CharArray       | .NET 7.0 | 1000       | 2,526.60 ns |  8.985 ns |  8.404 ns |  2.19 |    4048 B |
+| CharArray       | .NET 8.0 | 1000       | 1,216.09 ns |  3.699 ns |  3.460 ns |  1.05 |    4048 B |
+| CharArray       | .NET 9.0 | 1000       | 1,153.79 ns | 11.739 ns |  9.165 ns |  1.00 |    4048 B |
+|                 |          |            |             |           |           |       |           |
+| Span            | .NET 7.0 | 1000       | 2,592.64 ns | 16.828 ns | 15.741 ns |  2.19 |    2024 B |
+| Span            | .NET 8.0 | 1000       | 1,184.21 ns | 10.027 ns |  8.889 ns |  1.00 |    2024 B |
+| Span            | .NET 9.0 | 1000       | 1,182.92 ns |  8.253 ns |  7.720 ns |  1.00 |    2024 B |
 ```
 
 ## 🏁 Results
@@ -68,9 +87,10 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

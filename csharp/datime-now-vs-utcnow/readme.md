@@ -15,25 +15,31 @@ Docs:
 ## 🔥 Benchmark
 
 ```shell
-BenchmarkDotNet v0.13.9+228a464e8be6c580ad9408e98f18813f6407fb5a, Windows 10 (10.0.19045.3570/22H2/2022Update)
-AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-  [Host]   : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 7.0 : .NET 7.0.13 (7.0.1323.51816), X64 RyuJIT AVX2
-  .NET 8.0 : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.5131/22H2/2022Update)
+AMD Ryzen 9 9950X, 1 CPU, 32 logical and 16 physical cores
+.NET SDK 9.0.100
+  [Host]   : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 7.0 : .NET 7.0.20 (7.0.2024.26716), X64 RyuJIT AVX2
+  .NET 8.0 : .NET 8.0.11 (8.0.1124.51707), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
+  .NET 9.0 : .NET 9.0.0 (9.0.24.52809), X64 RyuJIT AVX-512F+CD+BW+DQ+VL+VBMI
 
 
-| Method                | Runtime  | Mean      | Error    | StdDev   | Ratio | RatioSD |
-|---------------------- |--------- |----------:|---------:|---------:|------:|--------:|
-| DateTimeOffset_UtcNow | .NET 7.0 |  29.25 ns | 0.256 ns | 0.227 ns |  1.00 |    0.00 |
-| DateTimeOffset_Now    | .NET 7.0 |  97.67 ns | 1.710 ns | 1.600 ns |  3.35 |    0.07 |
-| DateTime_UtcNow       | .NET 7.0 |  30.24 ns | 0.277 ns | 0.231 ns |  1.03 |    0.01 |
-| DateTime_Now          | .NET 7.0 | 148.96 ns | 2.050 ns | 1.917 ns |  5.09 |    0.04 |
-|                       |          |           |          |          |       |         |
-| DateTimeOffset_UtcNow | .NET 8.0 |  23.90 ns | 0.025 ns | 0.019 ns |  1.00 |    0.00 |
-| DateTimeOffset_Now    | .NET 8.0 |  72.49 ns | 1.222 ns | 1.143 ns |  3.04 |    0.05 |
-| DateTime_UtcNow       | .NET 8.0 |  27.11 ns | 0.521 ns | 0.487 ns |  1.13 |    0.02 |
-| DateTime_Now          | .NET 8.0 | 114.42 ns | 1.317 ns | 1.232 ns |  4.80 |    0.05 |
+| Method                | Runtime  | Mean     | Error    | StdDev   | Ratio | RatioSD |
+|---------------------- |--------- |---------:|---------:|---------:|------:|--------:|
+| DateTimeOffset_UtcNow | .NET 7.0 | 22.68 ns | 0.045 ns | 0.040 ns |  1.13 |    0.00 |
+| DateTimeOffset_Now    | .NET 7.0 | 62.67 ns | 0.189 ns | 0.168 ns |  3.13 |    0.01 |
+| DateTime_UtcNow       | .NET 7.0 | 24.50 ns | 0.145 ns | 0.136 ns |  1.22 |    0.01 |
+| DateTime_Now          | .NET 7.0 | 97.97 ns | 0.588 ns | 0.550 ns |  4.90 |    0.03 |
+|                       |          |          |          |          |       |         |
+| DateTimeOffset_UtcNow | .NET 8.0 | 19.95 ns | 0.037 ns | 0.035 ns |  1.00 |    0.00 |
+| DateTimeOffset_Now    | .NET 8.0 | 50.25 ns | 0.171 ns | 0.160 ns |  2.51 |    0.01 |
+| DateTime_UtcNow       | .NET 8.0 | 22.14 ns | 0.060 ns | 0.053 ns |  1.11 |    0.00 |
+| DateTime_Now          | .NET 8.0 | 74.43 ns | 0.150 ns | 0.140 ns |  3.72 |    0.01 |
+|                       |          |          |          |          |       |         |
+| DateTimeOffset_UtcNow | .NET 9.0 | 20.00 ns | 0.066 ns | 0.062 ns |  1.00 |    0.00 |
+| DateTimeOffset_Now    | .NET 9.0 | 51.31 ns | 0.113 ns | 0.106 ns |  2.57 |    0.01 |
+| DateTime_UtcNow       | .NET 9.0 | 22.08 ns | 0.041 ns | 0.037 ns |  1.10 |    0.00 |
+| DateTime_Now          | .NET 9.0 | 79.21 ns | 0.227 ns | 0.190 ns |  3.96 |    0.02 |
 
 ```
 
@@ -52,9 +58,10 @@ AMD Ryzen 9 5950X, 1 CPU, 32 logical and 16 physical cores
 ## ⌨️ Run this sample
 
 ```shell
-dotnet run -c Release
+dotnet run -c Release --framework net9.0
 ```
 
 ## Updates
 
 - 2023/11 - Add .NET 8
+- 2024/11 - Add .NET 9

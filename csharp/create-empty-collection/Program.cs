@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
@@ -10,8 +11,10 @@ using BenchmarkDotNet.Running;
 BenchmarkRunner.Run<Benchmark>();
 
 [MemoryDiagnoser]
-[SimpleJob(RuntimeMoniker.Net70)]
+[SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     private readonly Consumer consumer = new();

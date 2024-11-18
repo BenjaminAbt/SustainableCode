@@ -3,23 +3,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 BenchmarkRunner.Run<Benchmark>();
 
-[SimpleJob(RuntimeMoniker.Net70)]
+[MemoryDiagnoser]
+[SimpleJob(RuntimeMoniker.Net70)] // PGO enabled by default
 [SimpleJob(RuntimeMoniker.Net80)]
-[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
-[CategoriesColumn]
+[SimpleJob(RuntimeMoniker.Net90, baseline: true)]
+[HideColumns(Column.Job, Column.Median)]
 public class Benchmark
 {
     private List<int> _list;
     private HashSet<int> _hashset;
     private IEnumerable<int> _ienumerable;
 
-    [Params(1000, 10_000)]
+    [Params(1000)]
     public int Count { get; set; }
 
     [GlobalSetup]
@@ -27,18 +28,20 @@ public class Benchmark
     {
         IEnumerable<int> range = Enumerable.Range(0, Count);
 
-        _list = range.ToList();
-        _hashset = new(range);
-        _ienumerable = range;
+        _list = new List<int>(range);
+        _hashset = new HashSet<int>(range);
+        _ienumerable = new List<int>(range);
     }
 
     [Benchmark(Baseline = true), BenchmarkCategory("List")]
     public int List_Count_Property() => _list.Count;
+
     [Benchmark, BenchmarkCategory("List")]
     public int List_Count_Method() => _list.Count();
 
-    [Benchmark(Baseline = true), BenchmarkCategory("HashSet")]
+    [Benchmark, BenchmarkCategory("HashSet")]
     public int HashSet_Count_Property() => _hashset.Count;
+
     [Benchmark, BenchmarkCategory("HashSet")]
     public int HashSet_Count_Method() => _hashset.Count();
 
