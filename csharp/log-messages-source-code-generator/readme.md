@@ -1,6 +1,6 @@
 # 🌳 Sustainable Code - Source Generator based Logging Messages 📊
 
-This sample, based on .NET and [Compile-time logging source generation]](https://docs.microsoft.com/en-us/dotnet/core/extensions/logger-message-generator?WT.mc_id=DT-MVP-5001507), shows how to write logs faster and with less to zero allocations.
+This sample, based on .NET and [Compile-time logging source generation](https://docs.microsoft.com/en-us/dotnet/core/extensions/logger-message-generator?WT.mc_id=DT-MVP-5001507), shows how to write logs faster and with less to zero allocations.
 
 ## 🔥 Benchmark
 
