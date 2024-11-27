@@ -61,6 +61,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-String-Cleanup", "strin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-Empty-Return", "list-empty-return\NET-List-Empty-Return.csproj", "{96547F13-39BB-44B8-B52E-0088FA04E801}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET-Whitespace-Remove", "whitespace-remove\NET-Whitespace-Remove.csproj", "{6997BE07-B7CA-B9C7-6E7B-E391E501E647}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,10 @@ Global
 		{96547F13-39BB-44B8-B52E-0088FA04E801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96547F13-39BB-44B8-B52E-0088FA04E801}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96547F13-39BB-44B8-B52E-0088FA04E801}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6997BE07-B7CA-B9C7-6E7B-E391E501E647}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6997BE07-B7CA-B9C7-6E7B-E391E501E647}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6997BE07-B7CA-B9C7-6E7B-E391E501E647}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6997BE07-B7CA-B9C7-6E7B-E391E501E647}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
