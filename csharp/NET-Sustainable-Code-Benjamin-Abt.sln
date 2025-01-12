@@ -63,6 +63,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NET-List-Empty-Return", "li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET-Whitespace-Remove", "whitespace-remove\NET-Whitespace-Remove.csproj", "{6997BE07-B7CA-B9C7-6E7B-E391E501E647}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET-String-IsUnicode", "string-is-unicode\NET-String-IsUnicode.csproj", "{5D2B8E77-EBF5-F090-7CAF-33DA6132242A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET-String-AggressiveInlining", "string-aggressive-inlining\NET-String-AggressiveInlining.csproj", "{F4327DA0-AAD3-99C8-5664-6418BE78CAAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -181,6 +185,14 @@ Global
 		{6997BE07-B7CA-B9C7-6E7B-E391E501E647}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6997BE07-B7CA-B9C7-6E7B-E391E501E647}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6997BE07-B7CA-B9C7-6E7B-E391E501E647}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D2B8E77-EBF5-F090-7CAF-33DA6132242A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D2B8E77-EBF5-F090-7CAF-33DA6132242A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D2B8E77-EBF5-F090-7CAF-33DA6132242A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D2B8E77-EBF5-F090-7CAF-33DA6132242A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4327DA0-AAD3-99C8-5664-6418BE78CAAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4327DA0-AAD3-99C8-5664-6418BE78CAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4327DA0-AAD3-99C8-5664-6418BE78CAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4327DA0-AAD3-99C8-5664-6418BE78CAAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

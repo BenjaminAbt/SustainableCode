@@ -63,6 +63,10 @@ Code samples and snippets based on .NET
 
 [.NET Whitespace Remove](csharp/whitespace-remove)
 
+[.NET String Aggressive Inlining](csharp/string-aggressive-inlining)
+
+[.NET String IsUnicode Vectorizing](csharp/string-is-unicode)
+
 ## Energy Calculation
 
 The energy consumption of an application itself is comparatively complex to measure and often inaccurate. Therefore, proxy measurements are mostly used: the better an application performs, the less energy is required.
